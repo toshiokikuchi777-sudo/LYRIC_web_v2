@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /send.php
+Disallow: /mailtest.php
+Disallow: /thanks.html
+Disallow: /contact_log.txt
+Disallow: /phpmailer/
+
+Sitemap: https://n-lyric.com/sitemap.xml

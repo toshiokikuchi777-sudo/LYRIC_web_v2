@@ -1,0 +1,471 @@
+@charset "UTF-8";
+/* ==========================================================================
+   catchteenieping_all.css
+   キラキラ キャッチ！ティニピン 商品情報ページ統合スタイル
+   - destyle.css v4.0.0 (MIT License) by Nicolas Cusan
+   - LYRIC Design Tokens
+   - 当ページで使用するスタイルのみを集約
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Reset (destyle.css v4.0.0 / MIT License)
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { line-height: 1.15; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; }
+main { display: block; }
+p, h1, h2, h3, h4, h5, h6, blockquote, figure, hr { margin: 0; padding: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+address { font-style: inherit; }
+a { background-color: transparent; text-decoration: none; color: inherit; }
+b, strong { font-weight: bolder; }
+small { font-size: 80%; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+svg, img, embed, object, iframe { vertical-align: bottom; }
+button, input, optgroup, select, textarea { -webkit-appearance: none; appearance: none; vertical-align: middle; color: inherit; font: inherit; background: transparent; padding: 0; margin: 0; border: 0; border-radius: 0; text-align: inherit; }
+[type="checkbox"] { -webkit-appearance: checkbox; appearance: checkbox; }
+[type="radio"] { -webkit-appearance: radio; appearance: radio; }
+button, [type="button"], [type="reset"], [type="submit"] { cursor: pointer; }
+button[disabled], [type="button"][disabled], [type="reset"][disabled], [type="submit"][disabled] { cursor: default; }
+table { border-collapse: collapse; border-spacing: 0; }
+caption { text-align: left; }
+td, th { vertical-align: top; padding: 0; }
+th { text-align: left; font-weight: var(--fw-bold); }
+
+/* ==========================================================================
+   2. Design Tokens
+   ========================================================================== */
+:root {
+  /* Brand */
+  --color-brand-primary: #fa86c4;
+  --color-brand-accent: #ff5288;
+  --color-brand-soft: #ffe6f0;
+  --color-brand-dot: #ffc9dd;
+  /* IP accents */
+  --color-ip-ctp: #ff8dea;
+  --color-ip-ctp-line: #fef100;
+  --color-ip-sw: #d53428;
+  /* Text */
+  --color-text-base: #333;
+  --color-text-soft: #555;
+  --color-text-invert: #fff;
+  /* Surfaces */
+  --color-bg-card: #fff;
+  /* Gradients */
+  --grad-brand: linear-gradient(90deg, #fa86c4, #ff5288);
+  --grad-purchase: linear-gradient(90deg, rgba(115,255,101,1), rgba(0,255,70,1));
+  --grad-purchase-hover: linear-gradient(90deg, rgba(175,255,101,1), rgba(4,218,255,1));
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+  /* Shadow */
+  --shadow-card: 0 10px 25px 0 rgba(0,0,0,0.18);
+  --shadow-ctp: 0 10px 25px 0 #ff8dea;
+  /* Easing */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Fonts */
+  --font-base: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
+  /* Typography Scale (統一スケール — index_all.css と共通) */
+  --fs-2xs: clamp(10px, 0.85vw, 12px);
+  --fs-xs:  clamp(11px, 1vw, 13px);
+  --fs-sm:  clamp(12px, 1.1vw, 14px);
+  --fs-md:  clamp(14px, 1.25vw, 16px);
+  --fs-lg:  clamp(16px, 1.6vw, 20px);
+  --fs-xl:  clamp(20px, 2.4vw, 30px);
+  --fs-2xl: clamp(28px, 3.6vw, 42px);
+  --fs-3xl: clamp(32px, 5.2vw, 68px);
+  --ls-tight: 0.02em; --ls-normal: 0.04em; --ls-wide: 0.1em; --ls-wider: 0.18em; --ls-widest: 0.3em;
+  --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700; --fw-extrabold: 800;
+  --lh-tight: 1.25; --lh-snug: 1.4; --lh-base: 1.6; --lh-loose: 1.8;
+}
+
+/* ==========================================================================
+   3. Base
+   ========================================================================== */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-base);
+  color: var(--color-text-base);
+  line-height: var(--lh-loose);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* body の background は HTML 内 <style> 側でページ専用グラデーションを指定 */
+}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: var(--lh-snug); }
+a { transition: color .2s var(--ease-standard), opacity .2s var(--ease-standard); }
+a:hover { opacity: .85; }
+img, picture { max-width: 100%; height: auto; }
+
+/* ==========================================================================
+   4. Header / Logo
+   ========================================================================== */
+header {
+  position: relative;
+  z-index: 10;
+  padding: 16px 24px;
+}
+.logo_container { display: inline-block; }
+.logo_content {
+  width: clamp(110px, 14vw, 170px);
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+}
+
+/* ==========================================================================
+   5. Hamburger Menu (Drawer)
+   ========================================================================== */
+.drawer { position: fixed; top: 16px; right: 16px; z-index: 100; }
+#input { display: none; }
+
+#nav_open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-brand);
+  box-shadow: 0 6px 16px rgba(255, 82, 136, 0.35);
+  cursor: pointer;
+  position: relative;
+  z-index: 102;
+  transition: transform .2s var(--ease-standard);
+}
+#nav_open:hover { transform: scale(1.05); }
+
+.sp_btn {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  margin: 2px 0;
+  border-radius: 2px;
+  transition: transform .3s var(--ease-emphasized), opacity .3s var(--ease-standard);
+}
+.sp_btn_text {
+  font-size: var(--fs-2xs);
+  color: #fff;
+  letter-spacing: var(--ls-wide);
+  margin-top: 4px;
+  font-weight: var(--fw-bold);
+}
+
+#input:checked ~ #nav_open .sp_btn:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+#input:checked ~ #nav_open .sp_btn:nth-child(2) { opacity: 0; }
+#input:checked ~ #nav_open .sp_btn:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+#input:checked ~ #nav_open .sp_btn_text { opacity: 0; }
+
+#nav_close {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  cursor: pointer;
+}
+#input:checked ~ #nav_close { display: block; }
+
+#nav_content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(360px, 88vw);
+  height: 100vh;
+  height: 100dvh;
+  background: linear-gradient(180deg, #fff 0%, #ffe6f0 100%);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12);
+  padding: 80px 28px 40px;
+  overflow-y: auto;
+  transform: translateX(110%);
+  transition: transform .35s var(--ease-emphasized);
+  z-index: 101;
+}
+#input:checked ~ #nav_content { transform: translateX(0); }
+
+#sp_menu { margin-bottom: 24px; }
+#sp_menu .page_link {
+  border-bottom: 1px dashed var(--color-brand-dot);
+  padding: 14px 0;
+}
+#sp_menu .page_link a {
+  display: block;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-base);
+  font-family: var(--font-heading);
+}
+.sp_menu_under {
+  position: relative;
+  display: inline-block;
+  padding-left: 18px;
+}
+.sp_menu_under::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-brand-primary);
+  transform: translateY(-50%);
+}
+
+.sp_sns_text,
+.sp_sns_p_text,
+.sp_sns_s_text {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  margin: 18px 0 10px;
+  color: var(--color-text-soft);
+  letter-spacing: var(--ls-normal);
+}
+.sp_sns_p_text { color: var(--color-brand-accent); }
+.sp_sns_s_text { color: var(--color-ip-sw); }
+
+.sp_sns_menu {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sp_sns a {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s var(--ease-standard);
+}
+.sp_sns a:hover { transform: translateY(-2px); }
+
+/* ==========================================================================
+   6. CTP Main Section
+   ========================================================================== */
+.bg_ctp {
+  background-image: url("../images/ctp/ctp-bg.png");
+  background-size: contain;
+  background-repeat: repeat;
+  padding-top: 35px;
+  padding-bottom: 50px;
+}
+.ctp_container {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ctp_logo {
+  display: block;
+  margin: -30px auto 25px;
+  width: clamp(350px, 65vw, 65vw);
+  height: auto;
+}
+.ctp_title {
+  display: block;
+  width: clamp(350px, 65vw, 65vw);
+  margin: 0 auto 30px;
+  height: auto;
+}
+
+/* ==========================================================================
+   7. CTP Product List
+   ========================================================================== */
+.ctp_product {
+  margin-bottom: 50px;
+  text-align: center;
+}
+.ctp_heading {
+  display: block;
+  width: clamp(350px, 65vw, 61vw);
+  font-size: var(--fs-xl);
+  letter-spacing: var(--ls-normal);
+  font-family: var(--font-heading);
+  margin: 0 auto 3px;
+  padding: clamp(15px, 1vw, 23px);
+  text-align: center;
+  font-weight: var(--fw-medium);
+  color: var(--color-text-base);
+}
+.ctp_main1 {
+  display: block;
+  width: clamp(350px, 65vw, 65vw);
+  margin: 0 auto 30px;
+  box-shadow: var(--shadow-ctp);
+  background: #fff;
+  border: solid 5px var(--color-ip-ctp-line);
+  border-radius: var(--radius-xl);
+  height: auto;
+}
+
+/* Purchase Button */
+.purchase_ctp {
+  color: #fff;
+  font-size: var(--fs-xl);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.purchase_ctp a {
+  display: inline-block;
+  color: #fff;
+  background-image: var(--grad-purchase);
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  border-radius: 2vh;
+  transition: background-image .25s var(--ease-standard), transform .2s var(--ease-standard);
+  font-weight: var(--fw-bold);
+}
+.purchase_ctp a:hover {
+  background-image: var(--grad-purchase-hover);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+.purchase_ctp a::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: var(--fw-extrabold);
+  content: "\f138";
+  margin-left: 0.5rem;
+}
+.shadow_ctp { box-shadow: 0 10px 25px 0 rgba(0,0,0,.5); }
+
+/* ==========================================================================
+   8. SNS Section
+   ========================================================================== */
+.sns {
+  text-align: center;
+  margin: 40px auto 30px;
+  padding: 0 16px;
+}
+.sns_title_l,
+.sns_title_p,
+.sns_title_s {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  letter-spacing: var(--ls-normal);
+  margin-bottom: 14px;
+  padding: 4px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-base);
+}
+.sns_title_p { color: var(--color-brand-accent); }
+.sns_title_s { color: var(--color-ip-sw); }
+
+.sns-item_container,
+.sns-item_s_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 auto;
+}
+.sns-item a {
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform .2s var(--ease-standard), box-shadow .2s var(--ease-standard);
+}
+.sns-item a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.14);
+}
+.sns-item img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   9. Footer / Page-top / Copyright
+   ========================================================================== */
+footer {
+  position: relative;
+  text-align: center;
+  padding: 40px 16px 24px;
+  margin-top: 30px;
+}
+.page-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  cursor: pointer;
+  transition: transform .2s var(--ease-standard);
+}
+.page-top:hover { transform: translateY(-4px); }
+.page-top img {
+  width: 64px;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.18));
+}
+.copyright {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--color-text-soft);
+  letter-spacing: var(--ls-wide);
+}
+
+/* ==========================================================================
+   10. Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+  header { padding: 12px 16px; }
+  .logo_content { width: clamp(96px, 28vw, 140px); }
+  .drawer { top: 12px; right: 12px; }
+  #nav_open { width: 48px; height: 48px; }
+  .sp_btn { width: 22px; }
+  .ctp_logo,
+  .ctp_title,
+  .ctp_main1,
+  .ctp_heading {
+    width: 90vw;
+  }
+  .ctp_heading { font-size: var(--fs-lg); padding: 12px; }
+  .ctp_product { margin-bottom: 36px; }
+  .purchase_ctp { font-size: var(--fs-lg); }
+  .sns-item a { width: 48px; height: 48px; }
+  .sns-item img { width: 26px; height: 26px; }
+  .page-top img { width: 56px; }
+}
+@media (max-width: 480px) {
+  .ctp_logo,
+  .ctp_title,
+  .ctp_main1,
+  .ctp_heading {
+    width: 92vw;
+  }
+}
+
+/* ==========================================================================
+   11. Animations / A11y
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}

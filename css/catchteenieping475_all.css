@@ -1,0 +1,733 @@
+@charset "UTF-8";
+/* ==========================================================================
+   catchteenieping475_all.css
+   キャッチ！ティニピン × 475 コラボ商品情報ページ統合スタイル
+   - destyle.css v4.0.0 (MIT License) by Nicolas Cusan
+   - LYRIC Design Tokens
+   - 当ページで使用するスタイルのみを集約（475コラボ専用配色：紫/マゼンタ/ピンク）
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Reset (destyle.css v4.0.0 / MIT License)
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { line-height: 1.15; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; }
+main { display: block; }
+p, h1, h2, h3, h4, h5, h6, blockquote, figure, hr { margin: 0; padding: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+address { font-style: inherit; }
+a { background-color: transparent; text-decoration: none; color: inherit; }
+b, strong { font-weight: bolder; }
+small { font-size: 80%; }
+svg, img, embed, object, iframe { vertical-align: bottom; }
+button, input, optgroup, select, textarea { -webkit-appearance: none; appearance: none; vertical-align: middle; color: inherit; font: inherit; background: transparent; padding: 0; margin: 0; border: 0; border-radius: 0; text-align: inherit; }
+[type="checkbox"] { -webkit-appearance: checkbox; appearance: checkbox; }
+button, [type="button"], [type="reset"], [type="submit"] { cursor: pointer; }
+table { border-collapse: collapse; border-spacing: 0; }
+caption { text-align: left; }
+td, th { vertical-align: top; padding: 0; }
+th { text-align: left; font-weight: var(--fw-bold); }
+
+/* ==========================================================================
+   2. Design Tokens
+   ========================================================================== */
+:root {
+  /* Brand */
+  --color-brand-primary: #fa86c4;
+  --color-brand-accent: #ff5288;
+  --color-brand-soft: #ffe6f0;
+  --color-brand-dot: #ffc9dd;
+  /* 475 Collab */
+  --color-475-pink: #ff69b4;
+  --color-475-pink-dark: #e0559f;
+  --color-475-magenta: #ea4aa2;
+  --color-475-purple: #a200ff;
+  --color-475-pink-bright: #ff00ff;
+  --color-475-brown: #5C4033;
+  --color-475-brown-line: #6a3906;
+  --color-475-orange: #ee8236;
+  /* Gradients */
+  --grad-brand: linear-gradient(90deg, #fa86c4, #ff5288);
+  --grad-475-purchase: linear-gradient(90deg, #a200ff, #ff00ff);
+  --grad-475-purchase-hover: linear-gradient(90deg, #c400ff, #ff66ff);
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  /* Easing */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Fonts */
+  --font-base: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
+  /* Text */
+  --color-text-base: #333;
+  --color-text-soft: #555;
+  /* Typography Scale (統一スケール — index_all.css と共通) */
+  --fs-2xs: clamp(10px, 0.85vw, 12px);
+  --fs-xs:  clamp(11px, 1vw, 13px);
+  --fs-sm:  clamp(12px, 1.1vw, 14px);
+  --fs-md:  clamp(14px, 1.25vw, 16px);
+  --fs-lg:  clamp(16px, 1.6vw, 20px);
+  --fs-xl:  clamp(20px, 2.4vw, 30px);
+  --fs-2xl: clamp(28px, 3.6vw, 42px);
+  --fs-3xl: clamp(32px, 5.2vw, 68px);
+  --ls-tight: 0.02em; --ls-normal: 0.04em; --ls-wide: 0.1em; --ls-wider: 0.18em; --ls-widest: 0.3em;
+  --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700; --fw-extrabold: 800;
+  --lh-tight: 1.25; --lh-snug: 1.4; --lh-base: 1.6; --lh-loose: 1.8;
+}
+
+/* ==========================================================================
+   3. Base
+   ========================================================================== */
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-base);
+  color: var(--color-text-base);
+  line-height: var(--lh-loose);
+  background: #fff;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body > * { position: relative; z-index: 1; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: var(--lh-snug); }
+a { transition: color .2s var(--ease-standard), opacity .2s var(--ease-standard); }
+img, picture { max-width: 100%; height: auto; }
+
+/* ==========================================================================
+   4. Background Layers (固定背景 + 浮遊レイヤー)
+   ========================================================================== */
+.bg-fixed {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/475/475-bg.svg");
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 100% auto;
+  z-index: 0;
+  pointer-events: none;
+}
+.floating-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/475/475star.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 1;
+  pointer-events: none;
+  animation: floatXY 12s ease-in-out infinite alternate;
+  box-sizing: border-box;
+}
+@media (min-width: 1024px) {
+  .floating-layer { background-size: cover; }
+}
+
+@keyframes floatXY {
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(-8px, -12px) scale(1.02); }
+  40%  { transform: translate(16px, -8px) scale(1.01); }
+  60%  { transform: translate(-14px, 14px) scale(1.03); }
+  80%  { transform: translate(12px, -6px) scale(1.01); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* ==========================================================================
+   5. Header / Logo
+   ========================================================================== */
+header {
+  background-color: transparent;
+  color: var(--color-475-brown);
+  width: 100%;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 10;
+}
+.logo-box {
+  display: inline-flex;
+  align-items: center;
+}
+.logo_container {
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo_content {
+  display: block;
+  height: auto;
+  width: clamp(48px, 12vw, 160px);
+}
+.header-spacer {
+  height: 30px;
+  background-color: transparent;
+  width: 100%;
+}
+
+/* ==========================================================================
+   6. Hamburger Menu (Drawer) — 475仕様（透過/茶ライン/ピンク背景）
+   ========================================================================== */
+.drawer { position: relative; }
+#input { display: none; }
+
+#nav_open {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  z-index: 10000;
+  cursor: pointer;
+}
+.sp_btn {
+  display: block;
+  width: 31px;
+  height: 2px;
+  background-color: var(--color-475-brown-line);
+  margin-top: 7px;
+  border-radius: 5px;
+  transition: .4s ease-in;
+}
+.sp_btn_text {
+  display: block;
+  font-size: var(--fs-xs);
+  padding-top: 5px;
+  color: var(--color-475-brown-line);
+  text-align: center;
+}
+
+#sp_menu {
+  display: grid;
+  grid-template-columns: 80px 80px;
+  gap: 40px;
+  margin: 50px 0 0 50px;
+}
+.page_link a {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  color: var(--color-475-brown);
+}
+.sp_menu_under {
+  border-bottom: solid 1px;
+  padding-bottom: 2px;
+}
+
+.sp_sns_text {
+  display: block;
+  color: var(--color-475-orange);
+  margin-top: 80px;
+  text-align: center;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-normal);
+}
+.sp_sns_p_text {
+  display: block;
+  color: #ff8dea;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-normal);
+}
+.sp_sns_s_text {
+  display: block;
+  color: #d53428;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: var(--fw-bold);
+}
+.sp_sns_menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 20px;
+  z-index: 100;
+}
+.sp_sns {
+  display: block;
+  list-style: none;
+  width: 45px;
+  height: 45px;
+}
+.sp_sns a {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s var(--ease-standard);
+}
+.sp_sns a:hover { transform: translateY(-2px); }
+
+#nav_content {
+  background-color: #ffccde;
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  padding: 40px 16px 40px;
+  overflow-y: auto;
+  transform: translateX(19rem);
+  transition: .4s ease-in;
+}
+#nav_close {
+  width: 100%;
+  height: 100%;
+  background: #8D6A30;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  transform: translateX(100%);
+  transition: .4s ease-in;
+}
+#input:checked ~ #nav_content { transform: translateX(0); }
+#input:checked ~ #nav_close { transform: translateX(0); }
+#input:checked ~ #nav_open .sp_btn:nth-of-type(1) { transform: translateY(9px) rotate(-45deg); }
+#input:checked ~ #nav_open .sp_btn:nth-of-type(2) { opacity: 0; }
+#input:checked ~ #nav_open .sp_btn:nth-of-type(3) { transform: translateY(-9px) rotate(45deg); }
+
+/* ==========================================================================
+   7. Top Visual (with floating + fixed-logo + SP image)
+   ========================================================================== */
+.top-visual {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  padding-top: 20px;
+  position: relative;
+}
+.top-visual-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: auto;
+  box-sizing: border-box;
+}
+.top-main-image {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.floating-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+  animation: floatXY 14s ease-in-out infinite alternate;
+}
+.fixed-logo {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 250px;
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+}
+.sp-top-image { display: none; }
+
+/* ==========================================================================
+   8. Catch Copy (with stripe SVG bg)
+   ========================================================================== */
+.catch-copy {
+  background: url("../images/475/475stripe.svg") no-repeat center;
+  background-size: cover;
+  text-align: center;
+  padding: 20px 20px;
+  position: relative;
+  opacity: 1; /* JS依存解除 */
+  transform: none;
+  transition: opacity .6s var(--ease-standard), transform .6s var(--ease-standard);
+}
+.catch-copy.hidden { opacity: 0; transform: translateY(30px); }
+.catch-copy.visible { opacity: 1; transform: translateY(0); }
+.catch-copy h2,
+.catch-copy p { color: var(--color-475-magenta); }
+.catch-copy h2 {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: 10px;
+}
+.catch-copy p { font-size: var(--fs-lg); }
+.logo475 {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   9. Product Cards
+   ========================================================================== */
+.product {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid #fff;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 1000px;
+  box-sizing: border-box;
+  transition: box-shadow .3s var(--ease-standard);
+}
+.product:hover {
+  box-shadow: 0 0 20px 5px rgba(255, 105, 180, 0.5);
+}
+.product h2 {
+  color: var(--color-475-pink);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-2xl);
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: var(--lh-snug);
+}
+.top-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  transition: transform .3s var(--ease-standard);
+}
+.top-image:hover { transform: scale(1.05); }
+
+.product-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.product-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid #fff;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.slideshow-and-text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   10. Slideshow
+   ========================================================================== */
+.slideshow-wrapper {
+  width: 300px;
+  max-width: 100%;
+  position: relative;
+}
+.slideshow-wrapper.wide-slide {
+  width: 100%;
+  max-width: 600px;
+}
+.slideshow-container { overflow: hidden; }
+.slides {
+  display: flex;
+  transition: transform 0.5s var(--ease-standard);
+}
+.slide {
+  flex: 0 0 100%;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-lg);
+}
+.slide.wide {
+  width: 600px;
+  aspect-ratio: 2 / 1;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg);
+}
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--fs-2xl);
+  color: var(--color-475-pink);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  padding: 6px 12px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+  transition: background .3s var(--ease-standard), transform .3s var(--ease-standard), color .3s var(--ease-standard);
+}
+.prev:hover,
+.next:hover {
+  background-color: var(--color-475-pink);
+  color: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 6px;
+}
+.dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+}
+.dots span.active { background: var(--color-475-pink); }
+
+/* ==========================================================================
+   11. Product Info Box
+   ========================================================================== */
+.product-info {
+  color: var(--color-475-brown);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-loose);
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  flex: 1;
+  min-width: 250px;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   12. Purchase Button (475: 紫 → マゼンタ グラデ)
+   ========================================================================== */
+.purchase_ctp {
+  text-align: center;
+  margin-top: 20px;
+}
+.purchase_ctp a,
+.purchase-button {
+  display: inline-block;
+  color: #fff;
+  background-image: var(--grad-475-purchase);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  font-size: var(--fs-md);
+  transition: transform .3s var(--ease-standard), box-shadow .3s var(--ease-standard), background-image .3s var(--ease-standard);
+}
+.purchase_ctp a:hover,
+.purchase-button:hover {
+  background-image: var(--grad-475-purchase-hover);
+  transform: scale(1.06);
+  box-shadow: 0 8px 16px rgba(162, 0, 255, 0.4);
+}
+
+.purchase_container {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+.purchase_section { margin-bottom: 40px; }
+.purchase_title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  letter-spacing: var(--ls-normal);
+  color: var(--color-475-brown);
+}
+
+@media screen and (min-width: 768px) {
+  .purchase_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+/* ==========================================================================
+   13. SNS Section
+   ========================================================================== */
+.sns {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.sns_title_l,
+.sns_title_p {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--color-text-base);
+}
+.sns_title_p { color: var(--color-brand-accent); }
+
+.sns-item_container,
+.sns-item_s_container {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+.sns-item a {
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s var(--ease-standard), box-shadow .2s var(--ease-standard);
+}
+.sns-item a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+.sns-item img {
+  width: 48px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   14. Footer (475 background + footer-ctp overlay)
+   ========================================================================== */
+footer {
+  background: url("../images/475/475footer.svg") no-repeat bottom;
+  background-size: 100%;
+  min-height: 400px;
+  position: relative;
+}
+.footer-ctp {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+.copyright {
+  color: var(--color-475-purple);
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+}
+
+/* ==========================================================================
+   15. Page-top Button (475)
+   ========================================================================== */
+.page-top {
+  position: fixed;
+  right: 8%;
+  bottom: 160px;
+  z-index: 101;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: transform .3s var(--ease-standard), opacity .3s var(--ease-standard);
+}
+.page-top:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
+.page-top img {
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.18));
+}
+
+/* ==========================================================================
+   16. Responsive
+   ========================================================================== */
+@media (max-width: 767px) {
+  .logo_container { margin-left: 0; margin-right: auto; text-align: left; }
+  .logo_content { width: 28%; max-width: 100px; }
+  .top-main-image,
+  .floating-top,
+  .fixed-logo { display: none !important; }
+  .sp-top-image {
+    display: block !important;
+    width: 100%;
+    height: auto;
+  }
+  .floating-top { animation: none !important; transform: none; }
+  .fixed-logo { width: 120px; }
+  .footer-ctp { width: 60vw; max-width: 280px; }
+  .page-top { bottom: 100px; right: 4%; }
+  .page-top img { width: 64px; }
+  #sp_menu { grid-template-columns: 80px 80px; gap: 30px; margin: 40px auto 0; justify-content: center; }
+  .sns-item img { width: 40px; }
+}
+@media (max-width: 600px) {
+  .product-section { flex-direction: column; align-items: center; }
+  .slide.wide { width: 100%; }
+  .top-image { max-width: 100%; margin-bottom: 15px; }
+  .product-info { font-size: var(--fs-md); padding: 12px 15px; }
+  .top-main-image { border-radius: 0; }
+  .top-visual-inner { padding: 0 10px; }
+  .slideshow-and-text { flex-direction: column; align-items: center; }
+}
+
+/* ==========================================================================
+   17. Animations / A11y
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:focus-visible {
+  outline: 3px solid var(--color-475-purple);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}

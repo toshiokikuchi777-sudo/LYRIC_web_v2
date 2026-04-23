@@ -1,0 +1,860 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   common.css — サイト共通CSS (index / gallery / company 共有)
+   --------------------------------------------------------------------------
+   構成:
+     1. Reset (destyle.css v4.0.0 / MIT)
+     2. Design Tokens (:root変数)
+     3. Base (html / body / 見出し / リンク)
+     4. Header / Logo / Nav (デスクトップ)
+     5. Hamburger Menu (<=1000px)
+     6. Responsive (<=768 / <=480)
+     7. SNS Wrapper / SNS Section
+     8. Footer / Page-Top / Copyright
+     9. Animations / Utility / Accessibility
+   --------------------------------------------------------------------------
+   ページ固有スタイルは {page}_all.css に残す。
+   このファイルを先に、ページCSSを後に読み込む。
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. RESET  —  destyle.css v4.0.0 | MIT License | github.com/nicolas-cusan/destyle.css
+   ========================================================================== */
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body { margin: 0; }
+main { display: block; }
+
+p, table, blockquote, address, pre, iframe, form, figure, dl { margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+dt { font-weight: var(--fw-bold); }
+dd { margin-left: 0; }
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+  border-top-width: 1px;
+  margin: 0;
+  clear: both;
+  color: inherit;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: inherit;
+}
+
+address { font-style: inherit; }
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+abbr[title] { text-decoration: underline dotted; }
+
+b, strong { font-weight: bolder; }
+
+code, kbd, samp {
+  font-family: monospace, monospace;
+  font-size: inherit;
+}
+
+small { font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+svg, img, embed, object, iframe { vertical-align: bottom; }
+
+button, input, optgroup, select, textarea {
+  vertical-align: middle;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  text-align: inherit;
+  text-transform: inherit;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] { cursor: pointer; }
+
+button:disabled,
+[type="button"]:disabled,
+[type="reset"]:disabled,
+[type="submit"]:disabled { cursor: default; }
+
+:-moz-focusring { outline: auto; }
+select:disabled { opacity: inherit; }
+option { padding: 0; }
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+legend { padding: 0; }
+progress { vertical-align: baseline; }
+textarea { overflow: auto; }
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button { height: auto; }
+
+[type="search"] { outline-offset: -2px; }
+[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+[type="number"] { -moz-appearance: textfield; }
+
+label[for] { cursor: pointer; }
+
+details { display: block; }
+summary { display: list-item; }
+
+[contenteditable]:focus { outline: auto; }
+
+table {
+  border-color: inherit;
+  border-collapse: collapse;
+}
+caption { text-align: left; }
+td, th {
+  vertical-align: top;
+  padding: 0;
+}
+th {
+  text-align: left;
+  font-weight: var(--fw-bold);
+}
+
+
+/* ==========================================================================
+   2. DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --color-brand-primary: #fa86c4;
+  --color-brand-accent:  #ff5288;
+  --color-brand-soft:    #ffe6f0;
+  --color-brand-dot:     #ffc9dd;
+
+  /* Extended */
+  --color-ink:    #2B1B3A;
+  --color-paper:  #FFF7F0;
+  --color-mint:   #B8E6D9;
+  --color-sun:    #FFD66B;
+
+  /* Section heading (index 4セクション共通: NEWS/企業理念/商品情報/会社情報) */
+  --color-heading: var(--color-ink);
+
+  /* IP accent */
+  --ip-teenieping: #ff5288;
+  --ip-moomin:     #4aa3c7;
+  --ip-chiikawa:   #f4c05a;
+  --ip-shinchan:   #f5c84b;
+  --ip-475:        #ff8ab6;
+
+  /* Gradient */
+  --grad-brand: linear-gradient(135deg, #ff5288 0%, #fa86c4 45%, #ffb199 100%);
+  --grad-soft:  linear-gradient(180deg, #fff7f0 0%, #ffe6f0 100%);
+
+  /* Semantic text (統一スケール) */
+  --color-text-base:   #333;
+  --color-text-soft:   #555;
+  --color-text-muted:  #888;
+  --color-text-faint:  #999;
+  --color-text-warm:   #ae8046;
+  --color-text-dark:   #5d3416;
+  --color-text-invert: #fff;
+  --color-text-black:  #000;
+
+  /* IP accent color (brand tokens for SNS / hamburger section etc.) */
+  --color-ip-teenieping: #ff8dea;
+  --color-ip-475:        #ee8236;
+  --color-ip-sw:         #d53428;
+
+  /* Fake-account banner accent (brown/orange) */
+  --color-warn-brown-dark:   #7a3a00;
+  --color-warn-brown-darker: #5a2d00;
+  --color-warn-orange:       #e07000;
+
+  /* Link hover highlight */
+  --color-link-hover: #feb600;
+  /* Transparent invert (text on hero overlay) */
+  --color-text-invert-soft: rgba(255, 255, 255, 0.9);
+
+  /* Background */
+  --color-bg-base: #fff;
+  --color-bg-page: linear-gradient(180deg, #ffecfa 0%, #d4efff 100%);
+
+  /* Glass */
+  --glass-bg:     rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.6);
+
+  /* Shadow */
+  --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  --shadow-lift: 0 12px 30px 0 rgba(31, 38, 135, 0.15);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Ease */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Fonts */
+  --font-body:    "Noto Sans JP", "M PLUS Rounded 1c", "M PLUS 1p", "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "Noto Sans JP", "M PLUS 1p", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+
+  /* Typography Scale */
+  --fs-2xs: clamp(10px, 0.85vw, 12px);
+  --fs-xs:  clamp(11px, 1vw, 13px);
+  --fs-sm:  clamp(12px, 1.1vw, 14px);
+  --fs-md:  clamp(14px, 1.25vw, 16px);
+  --fs-lg:  clamp(16px, 1.6vw, 20px);
+  --fs-xl:  clamp(20px, 2.4vw, 30px);
+  --fs-2xl: clamp(28px, 3.6vw, 42px);
+  --fs-3xl: clamp(32px, 5.2vw, 68px);
+
+  /* Letter Spacing */
+  --ls-tight:   0.02em;
+  --ls-normal:  0.04em;
+  --ls-wide:    0.1em;
+  --ls-wider:   0.18em;
+  --ls-widest:  0.3em;
+
+  /* Font Weight */
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+
+  /* Line Height */
+  --lh-tight:  1.25;
+  --lh-snug:   1.4;
+  --lh-base:   1.6;
+  --lh-loose:  1.8;
+
+  /* Legacy aliases */
+  --primary-bg:       var(--color-bg-base);
+  --text-main:        var(--color-text-base);
+  --text-dark-brown:  var(--color-text-dark);
+  --primary-pink:     var(--color-brand-primary);
+  --accent-pink:      var(--color-brand-accent);
+  --accent-orange:    var(--color-brand-accent);
+  --pale-pink:        var(--color-brand-soft);
+  --dot-pink:         var(--color-brand-dot);
+  --bg-gradient-top:  var(--color-bg-page);
+}
+
+
+/* ==========================================================================
+   3. BASE
+   ========================================================================== */
+
+html {
+  max-width: 100%;
+  min-height: 100%;
+  font-size: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@font-face {
+  font-family: "M PLUS 1p";
+  src: url("../fonts/MPLUS1p-Medium_subset.woff") format("woff");
+  font-display: swap;
+}
+
+body {
+  background: transparent;
+  font-family: var(--font-body);
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-warm);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-loose);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(180deg, #ffecfa 0%, #d4efff 100%);
+  z-index: -2;
+}
+
+body > canvas {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-feature-settings: "palt" 1;
+  letter-spacing: var(--ls-normal);
+  color: var(--text-dark-brown);
+}
+
+body a {
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover { color: var(--color-link-hover); }
+
+main { margin-top: 50px; }
+
+
+/* ==========================================================================
+   4. HEADER / LOGO / NAV (デスクトップ)
+   ========================================================================== */
+
+header {
+  height: auto;
+  width: 100%;
+  padding: 10px 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.logo_container {
+  width: 150px !important;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+.logo_content {
+  display: block;
+  position: static;
+  width: 100% !important;
+  height: auto;
+  margin: 0;
+}
+
+.logo_content img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+#sp_menu {
+  position: static;
+  display: flex;
+  gap: clamp(12px, 1.8vw, 26px);
+  margin: 0;
+  width: auto;
+  font-weight: var(--fw-bold);
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#sp_menu a {
+  color: var(--color-ink);
+  font-weight: var(--fw-bold);
+  transition: color 0.3s;
+}
+
+#sp_menu a:hover { color: var(--color-brand-accent); }
+
+.page_link_recruit { width: auto !important; }
+
+.page_link_recruit a {
+  background-color: var(--accent-pink);
+  color: var(--color-text-invert) !important;
+  padding: 8px 15px;
+  border-radius: 50px;
+  display: inline-block;
+  line-height: 1;
+  box-shadow: 0 4px 15px rgba(255, 82, 136, 0.3);
+  transition: all 0.3s ease !important;
+}
+
+.page_link_recruit a:hover {
+  background-color: var(--accent-orange) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 82, 136, 0.4);
+  color: var(--color-text-invert) !important;
+}
+
+.page_link_recruit .sp_menu_under { border-bottom: none !important; }
+
+#input            { display: none; }
+.page_link        { width: auto; white-space: nowrap; }
+.page_link_c-content,
+.page_link_client,
+.page_link_access { display: none; }
+.sp_btn_text      { display: none; }
+.sp_sns           { display: none; }
+.sp_sns_text,
+.sp_sns_s_text,
+.sp_sns_p_text    { display: none; }
+
+
+/* ==========================================================================
+   5. HAMBURGER MENU  (<=1000px)
+   ========================================================================== */
+
+@media all and (max-width: 1000px) {
+  #sp_menu {
+    display: grid;
+    grid-template-columns: 80px 80px;
+    gap: 40px;
+    margin: 50px 0 0 50px;
+  }
+
+  .sp_sns_text {
+    display: block;
+    color: var(--color-ink);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wide);
+    margin-top: 80px;
+    text-align: center;
+  }
+
+  .sp_sns_s_text {
+    display: block;
+    color: var(--color-ip-sw);
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .sp_sns_p_text {
+    display: block;
+    color: var(--color-brand-accent);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wide);
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .sp_sns_menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 20px;
+  }
+
+  #sp_menu .page_link_recruit {
+    grid-column: span 2;
+    justify-self: center;
+    margin-top: 10px;
+  }
+
+  .page_link_recruit a {
+    padding: 10px 30px;
+    font-size: var(--fs-lg);
+  }
+
+  /* 三本線ボタン */
+  #nav_open {
+    width: 31px;
+    height: 31px;
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    z-index: 10000;
+  }
+
+  .sp_btn {
+    display: block;
+    width: 31px;
+    height: 2px;
+    background-color: var(--color-ink);
+    margin-top: 7px;
+    border-radius: 5px;
+    transition: .40s ease-in;
+  }
+
+  .sp_btn_text {
+    display: block;
+    font-size: var(--fs-xs);
+    padding-top: 5px;
+    color: var(--color-ink);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wide);
+  }
+
+  .sp_menu_under { border-bottom: none; }
+
+  #nav_open:after { content: ""; }
+
+  /* ドロワー本体 */
+  #nav_content {
+    background-color: #ffe6f0;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    transform: translateX(19rem);
+  }
+
+  .sp_sns {
+    display: block;
+    list-style-type: none;
+    width: 48px;
+    height: 48px;
+  }
+
+  /* 背景オーバーレイ */
+  #nav_close {
+    width: 100%;
+    height: 100%;
+    background: #8D6A30;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    opacity: 0.5;
+    transform: translateX(100%);
+  }
+
+  /* 開閉アニメーション */
+  #input:checked ~ #nav_content {
+    transform: translateX(0);
+    transition: .40s ease-in;
+  }
+
+  #input:checked ~ #nav_open .sp_btn:nth-of-type(1) {
+    transform: translateY(9px) rotate(-45deg);
+    transition: .40s ease-in;
+  }
+
+  #input:checked ~ #nav_open .sp_btn:nth-of-type(2) { opacity: 0; }
+
+  #input:checked ~ #nav_open .sp_btn:nth-of-type(3) {
+    transform: translateY(-9px) rotate(45deg);
+    transition: .40s ease-in;
+  }
+
+  #input:checked ~ #nav_close { transform: translateX(0); }
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE (<=768 / <=480)
+   ========================================================================== */
+
+@media all and (max-width: 768px) {
+  header { padding: 10px; }
+  .logo_content { width: 120px; }
+}
+
+@media screen and (max-width: 768px) {
+  .logo_container {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 180px !important;
+    height: auto !important;
+    z-index: 99999 !important;
+    position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .logo_content {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo_container {
+    display: block;
+    width: 180px !important;
+  }
+  .logo_container img { width: 100%; }
+}
+
+
+/* ==========================================================================
+   7. SNS WRAPPER / SNS SECTION
+   ========================================================================== */
+
+.sns-wrapper {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  max-width: 1000px;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.sns {
+  display: flex;
+  width: 800px;
+  margin: 0 auto 30px;
+  flex-wrap: wrap;
+}
+
+.sns_title_l {
+  text-align: center;
+  color: var(--color-ink);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.sns_title_p {
+  text-align: center;
+  color: var(--color-brand-accent);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.sns-item_container,
+.sns-item_s_container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 50%;
+  z-index: 100;
+}
+
+/* SNSアイコン統一スタイル: インク色の円背景 + 白グリフ + ピンクホバー */
+.sns-item a,
+.sp_sns a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--color-ink);
+  border-radius: 50%;
+  color: #fff;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sns-item a:hover,
+.sp_sns a:hover {
+  background: var(--color-brand-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 82, 136, 0.35);
+}
+
+.sns-item a .sns-glyph,
+.sp_sns a .sns-glyph {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* 旧img要素が残っていても白グリフ相当に正規化 */
+.sns-item a img,
+.sp_sns a img {
+  width: 22px !important;
+  height: 22px !important;
+  filter: brightness(0) invert(1);
+}
+
+@media all and (max-width: 800px) {
+  .sns {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 5vh auto 0;
+    width: fit-content;
+  }
+
+  .sns_title_l { order: 1; width: 100%; }
+  .sns_title_p { order: 3; width: 100%; }
+
+  .sns-item_container {
+    order: 2;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .sns-item_s_container {
+    order: 4;
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================================
+   8. FOOTER / PAGE-TOP / COPYRIGHT
+   ========================================================================== */
+
+footer {
+  min-height: 80px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+}
+
+footer small {
+  font-size: var(--fs-xs);
+  color: var(--color-text-invert);
+  text-align: center;
+  width: 100%;
+}
+
+.copyright {
+  color: var(--color-text-invert);
+  text-align: center;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+}
+
+.page-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+  cursor: pointer;
+}
+
+.page-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.page-top img {
+  width: 60px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.page-top:hover img { transform: scale(1.1); }
+
+
+/* ==========================================================================
+   9. ANIMATIONS / UTILITY / ACCESSIBILITY
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up { opacity: 1; }
+.fade-in-up.visible { animation: fadeInUp 0.8s ease-out forwards; }
+
+/* 汎用浮き上がりホバー */
+.u-lift {
+  transition:
+    transform 280ms var(--ease-out),
+    box-shadow 280ms var(--ease-out);
+  will-change: transform;
+}
+.u-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* スクロールリビール */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 620ms var(--ease-out),
+    transform 620ms var(--ease-out);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal][data-reveal-delay="1"] { transition-delay:  80ms; }
+[data-reveal][data-reveal-delay="2"] { transition-delay: 160ms; }
+[data-reveal][data-reveal-delay="3"] { transition-delay: 240ms; }
+[data-reveal][data-reveal-delay="4"] { transition-delay: 320ms; }
+
+/* アクセシビリティ */
+:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-ip-ribbon-track { animation: none; }
+  .hero-scroll-cue-line::after { animation: none; opacity: 0; }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

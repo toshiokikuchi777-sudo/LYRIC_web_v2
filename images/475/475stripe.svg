@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 842.33 295.77">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #f6c4d9;
+      }
+
+      .cls-3 {
+        fill: url(#_新規パターンスウォッチ_5);
+        opacity: .5;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: url(#_名称未設定グラデーション_10);
+      }
+    </style>
+    <linearGradient id="_名称未設定グラデーション_10" data-name="名称未設定グラデーション 10" x1="421.16" y1="125.5" x2="421.16" y2="279.75" gradientUnits="userSpaceOnUse">
+      <stop offset=".46" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="_新規パターンスウォッチ_5" data-name="新規パターンスウォッチ 5" x="0" y="0" width="19.64" height="42.55" patternTransform="translate(-14535.04 7011.24) rotate(51) scale(1.42)" patternUnits="userSpaceOnUse" viewBox="0 0 19.64 42.55">
+      <g>
+        <rect class="cls-1" y="0" width="19.64" height="42.55"/>
+        <rect class="cls-2" y="0" width="9.82" height="42.55"/>
+        <rect class="cls-4" x="9.82" y="0" width="9.82" height="42.55"/>
+      </g>
+    </pattern>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <rect class="cls-5" width="842.33" height="295.77"/>
+    <rect class="cls-3" width="842.33" height="295.77"/>
+  </g>
+</svg>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts: Noto Sans JP / M PLUS Rounded 1c -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<title>ICE BLIZZARD PONCHO</title>
+<link rel="icon" href="images/ICEBLIZZERD/favicon.ico" sizes="any">
+<style>
+
+:root{
+  --blue-50:#f3fbff;
+  --blue-100:#e7f6ff;
+  --blue-200:#d7efff;
+  --blue-300:#bee3fb;
+  --blue-400:#7dc9ee;
+  --blue-500:#22a9dc;
+  --blue-600:#0f88c2;
+  --navy:#1f4370;
+  --text:#284b73;
+  --white:#ffffff;
+  --shadow:0 16px 40px rgba(34,169,220,.18);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,#f4fbff 0%,#ffffff 30%,#eef9ff 100%);
+  line-height:1.7;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.section{padding:88px 0}
+.section-title{
+  font-size:clamp(28px,4vw,46px);
+  line-height:1.2;
+  color:var(--navy);
+  margin:0 0 14px;
+  text-align:center;
+  letter-spacing:.03em;
+}
+.section-lead{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 38px;
+  font-size:clamp(15px,2vw,18px);
+  color:#56718d;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  padding:0 28px;
+  border-radius:999px;
+  font-weight:700;
+  letter-spacing:.03em;
+  transition:.25s ease;
+  border:2px solid transparent;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#ffd84d,#ffbf00);
+  color:#5b4300;
+  box-shadow:0 16px 32px rgba(255,191,0,.28);
+  font-weight:800;
+}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{
+  background:#fff;
+  color:var(--blue-600);
+  border-color:var(--blue-300);
+}
+.card{
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(191,220,240,.95);
+  border-radius:var(--radius);
+  box-shadow:0 10px 28px rgba(35,52,109,.10);
+}
+.header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,.82);
+  border-bottom:1px solid rgba(34,169,220,.10);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  min-height:72px;
+}
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-weight:800;
+  color:var(--navy);
+  min-width:0;
+}
+.brand img{width:54px;height:auto}
+.company-brand{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.8);
+  border:1px solid rgba(31,67,112,.10);
+}
+.company-brand img{display:block;height:28px;width:auto}
+.nav{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  align-items:center;
+  font-size:14px;
+  color:#35537e;
+}
+.nav-desktop{display:flex}
+.menu-toggle{
+  display:none;
+  width:46px;
+  height:46px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.95);
+  box-shadow:0 8px 20px rgba(35,52,109,.10);
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.menu-toggle span{
+  display:block;
+  width:22px;
+  height:2px;
+  background:#1f4370;
+  border-radius:999px;
+  transition:.25s ease;
+}
+.menu-toggle.is-active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle.is-active span:nth-child(2){opacity:0}
+.menu-toggle.is-active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  display:none;
+  border-top:1px solid rgba(31,67,112,.08);
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+}
+.mobile-menu.is-open{display:block}
+.mobile-menu-nav{
+  display:flex;
+  flex-direction:column;
+  padding:10px 16px 16px;
+}
+.mobile-menu-nav a{
+  padding:14px 6px;
+  border-bottom:1px solid rgba(31,67,112,.08);
+  color:#284b73;
+  font-weight:700;
+}
+.mobile-menu-nav a:last-child{border-bottom:none}
+
+/* hero */
+.hero-layout-ref{
+  padding:0 0 54px;
+  background:transparent;
+}
+.hero-sky-area{
+  position:relative;
+  overflow:hidden;
+  padding:78px 0 22px;
+  background:url("images/ICEBLIZZERD/SKY.png") center top/cover no-repeat;
+}
+.hero-shell{position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#fff;
+  color:var(--blue-600);
+  border:1px solid var(--blue-200);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+}
+.hero-badge-top{display:table;margin:0 auto 18px}
+.hero-main-row{
+  display:grid;
+  grid-template-columns:minmax(0,1.8fr) minmax(340px,.95fr);
+  gap:34px;
+  align-items:end;
+  margin-bottom:18px;
+  padding:26px 20px 0;
+}
+.hero-title-panel{min-width:0;align-self:center}
+.hero-titleimg{
+  width:100%;
+  max-width:880px;
+  margin:0;
+  display:block;
+  filter:drop-shadow(0 10px 18px rgba(255,255,255,.18));
+}
+.hero-model-panel{
+  display:flex;
+  justify-content:center;
+  align-items:end;
+}
+.hero-modelimg{
+  width:100%;
+  max-width:430px;
+  height:auto;
+  display:block;
+}
+.hero-desc-panel{
+  width:min(960px,calc(100% - 40px));
+  margin:0 auto;
+  padding:24px 32px;
+  background:rgba(255,255,255,.5);
+  border-radius:24px;
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.3);
+}
+.hero-desc-panel .hero-text{
+  margin:0;
+  max-width:none;
+  text-align:center;
+  font-size:clamp(21px,1.75vw,24px);
+  line-height:1.8;
+  color:#1f4370;
+  text-shadow: 
+    2px 2px 0 #fff, -2px -2px 0 #fff,
+    2px -2px 0 #fff, -2px 2px 0 #fff,
+    2px 0 0 #fff, -2px 0 0 #fff,
+    0 2px 0 #fff, 0 -2px 0 #fff,
+    0 0 10px rgba(255,255,255,.8);
+}
+.hero-bottom-area{
+  background:linear-gradient(180deg,#eef8ff 0%,#d9efff 100%);
+  padding:26px 0 34px;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  margin:0 0 20px;
+}
+.hero-points{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+  align-items:stretch;
+}
+.hero-point{
+  padding:18px 16px;
+  text-align:center;
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(191,220,240,.95);
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(66,123,168,.08);
+  min-height:146px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.hero-point strong{
+  display:block;
+  color:#198fca;
+  font-size:clamp(22px,1.8vw,28px);
+  margin-bottom:8px;
+}
+.hero-point span{
+  font-size:clamp(17px,1.4vw,22px);
+  color:#2f4e78;
+}
+
+/* generic grids */
+.feature-grid,.faq-grid,.lineup-grid,.package-grid,.size-grid{display:grid;gap:22px}
+.feature-grid{grid-template-columns:repeat(4,1fr)}
+.feature{padding:26px 22px;text-align:center}
+.feature-icon{
+  width:64px;height:64px;border-radius:18px;margin:0 auto 14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#edf9ff,#dff5ff);
+  color:var(--blue-600);
+  font-size:28px;font-weight:700;
+}
+.feature h3{margin:0 0 8px;font-size:20px;color:var(--navy)}
+.feature p{margin:0;font-size:15px;color:#627d98}
+
+.image-panel{padding:16px;overflow:hidden}
+.image-panel img{border-radius:20px;width:100%}
+
+.size-grid{grid-template-columns:repeat(2,1fr)}
+.size-card,.lineup-card,.package-card{padding:18px}
+.size-card h3,.lineup-card h3{
+  margin:0 0 14px;
+  font-size:24px;color:var(--navy);text-align:center
+}
+.size-note{
+  margin-top:12px;text-align:center;color:#5f7b97;font-size:14px;
+}
+.lineup-grid{grid-template-columns:repeat(2,1fr)}
+.package-grid{grid-template-columns:repeat(2,1fr)}
+.faq-grid{grid-template-columns:1fr 1fr}
+.faq-item{padding:24px}
+.faq-q{margin:0 0 8px;color:var(--navy);font-size:20px;font-weight:800}
+.faq-a{margin:0;color:#5f7a95}
+
+.slider-wrap{
+  margin-top:18px;
+  overflow:hidden;
+  border-radius:22px;
+  background:linear-gradient(180deg,#f1fbff,#ffffff);
+  border:1px solid rgba(34,169,220,.14);
+  box-shadow:0 10px 28px rgba(27,61,91,.06);
+}
+.slider{position:relative}
+.slides{display:flex;transition:transform .45s ease;width:100%}
+.slide{min-width:100%;background:#fff}
+.slide img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.slider-controls{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;background:#fff
+}
+.slider-buttons{display:flex;gap:10px}
+.slider-btn{
+  width:42px;height:42px;border:none;border-radius:999px;
+  background:linear-gradient(135deg,#25a8dc,#177db7);
+  color:#fff;font-size:20px;cursor:pointer;box-shadow:var(--shadow)
+}
+.slider-dots{
+  display:flex;gap:8px;align-items:center;justify-content:center;flex:1
+}
+.slider-dot{
+  width:10px;height:10px;border-radius:999px;background:#bfeaff;border:none;cursor:pointer;padding:0
+}
+.slider-dot.active{width:28px;background:var(--blue-600)}
+
+/* howto horizontal */
+.howto-horizontal{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  align-items:stretch;
+}
+.howto-card{
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(201,225,241,.95);
+  border-radius:26px;
+  box-shadow:0 14px 32px rgba(46,104,153,.08);
+  padding:22px 20px 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:100%;
+}
+.howto-image{width:100%;margin-bottom:18px}
+.howto-image img{width:100%;height:auto;display:block}
+.howto-content h3{
+  margin:0 0 10px;
+  font-size:clamp(24px,1.8vw,30px);
+  line-height:1.3;
+  color:#224a79;
+}
+.howto-content p{
+  margin:0;
+  font-size:clamp(16px,1.15vw,18px);
+  line-height:1.9;
+  color:#54759a;
+}
+
+/* motion */
+.reveal-up,.reveal-left,.reveal-right,.reveal-scale{
+  opacity:0;
+  transition:transform .8s ease,opacity .8s ease,filter .8s ease;
+  will-change:transform,opacity;
+}
+.reveal-up{transform:translateY(28px)}
+.reveal-left{transform:translateX(-36px)}
+.reveal-right{transform:translateX(36px)}
+.reveal-scale{transform:scale(.96);filter:blur(4px)}
+.inview.reveal-up,.inview.reveal-left,.inview.reveal-right,.inview.reveal-scale{
+  opacity:1;transform:none;filter:none
+}
+.step-delay-1{transition-delay:.05s}
+.step-delay-2{transition-delay:.2s}
+.step-delay-3{transition-delay:.35s}
+.hero-titleimg{animation:heroFloat 5s ease-in-out infinite}
+.hero-modelimg{animation:heroFloat2 6s ease-in-out infinite}
+.btn{transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease}
+.btn:hover{transform:translateY(-3px)}
+.card,.hero-point,.lineup-card,.package-card,.feature,.faq-item,.howto-card{
+  transition:transform .3s ease,box-shadow .3s ease
+}
+.card:hover,.hero-point:hover,.lineup-card:hover,.package-card:hover,.feature:hover,.faq-item:hover,.howto-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 34px rgba(46,104,153,.12);
+}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes heroFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* footer */
+footer{
+  padding:28px 0 48px;
+  text-align:center;
+  color:#6f87a0;
+  font-size:14px;
+}
+.footer-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.footer-logo{height:42px;width:auto;display:block}
+.footer-copy{font-size:14px;color:#6f87a0}
+
+@media (max-width: 960px){
+  .container{width:min(100%,calc(100% - 24px))}
+  .nav-desktop{display:none !important}
+  .menu-toggle{display:inline-flex}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .size-grid,.lineup-grid,.package-grid,.faq-grid,.howto-horizontal{grid-template-columns:1fr}
+  .hero-main-row{grid-template-columns:1fr;gap:8px;padding:0}
+  .hero-title-panel .hero-titleimg{max-width:100%;margin:0 auto}
+  .hero-modelimg{max-width:360px;margin:0 auto}
+  .hero-desc-panel{width:calc(100% - 24px);padding:14px 12px}
+  .hero-desc-panel .hero-text{font-size:15px;line-height:1.85}
+  .hero-points{grid-template-columns:1fr;gap:12px}
+  .hero-bottom-area{padding:18px 0 24px}
+}
+@media (max-width: 640px){
+  body{overflow-x:hidden}
+  .section{padding:56px 0}
+  .container{width:calc(100% - 20px)}
+  .header-inner{min-height:60px;gap:10px}
+  .header-left{gap:8px;min-width:0;flex:1 1 auto}
+  .brand{gap:10px;min-width:0}
+  .brand img{width:38px}
+  .brand span{
+    font-size:14px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+  }
+  .company-brand{padding:4px 8px}
+  .company-brand img{height:22px}
+  .menu-toggle{
+    width:42px;height:42px;border-radius:10px;flex:0 0 auto
+  }
+  .hero-layout-ref{padding-bottom:26px}
+  .hero-sky-area{
+    padding:20px 0 10px;
+    background-position:left center !important;
+  }
+  .hero-badge-top{margin-bottom:10px}
+  .hero-title-panel .hero-titleimg{
+    width:96%;max-width:96%;margin:0 auto 8px
+  }
+  .hero-modelimg{
+    width:92%;max-width:420px;margin:0 auto 8px
+  }
+  .hero-desc-panel{
+    width:calc(100% - 20px);
+    padding:14px 10px;
+  }
+  .hero-desc-panel .hero-text{
+    font-size:13px;line-height:1.85
+  }
+  .hero-actions{
+    gap:10px;justify-content:center
+  }
+  .hero-actions .btn{
+    flex:1 1 0;min-width:0;max-width:46%;padding:0 10px;font-size:13px
+  }
+  .hero-point{
+    padding:18px 12px;border-radius:16px;min-height:auto
+  }
+  .hero-point strong{font-size:16px}
+  .section-title{
+    font-size:28px;line-height:1.25;margin-bottom:10px;padding:0 8px
+  }
+  .section-lead{
+    font-size:14px;margin:0 auto 24px;padding:0 8px
+  }
+  .feature-grid{grid-template-columns:1fr}
+  .feature{padding:18px 16px}
+  .feature h3{font-size:18px}
+  .feature p{font-size:14px}
+  .feature-icon{width:56px;height:56px;font-size:22px;margin-bottom:10px}
+  .size-card,.lineup-card,.package-card,.faq-item,.cta-box{padding:14px}
+  .size-card h3,.lineup-card h3{font-size:20px;margin-bottom:10px}
+  .size-note,.faq-a,.cta-box p{font-size:14px}
+  .faq-q{font-size:17px}
+  .slider-wrap{margin-top:12px;border-radius:18px}
+  .slider-controls{padding:10px 12px}
+  .slider-btn{width:38px;height:38px;font-size:18px}
+  .slider-dot.active{width:22px}
+  .lineup-actions .btn,.cta-box .btn{width:100%}
+  .cta-box div[style*="display:flex"]{flex-direction:column;align-items:stretch}
+  .footer-logo{height:34px}
+  footer{padding:20px 0 32px;font-size:13px}
+}
+
+
+/* ===== CTA refinement ===== */
+.cta-box{
+  padding: 72px 40px !important;
+  text-align: center !important;
+}
+.cta-box .section-title{
+  text-align: center !important;
+  margin-bottom: 20px !important;
+}
+.cta-box p{
+  max-width: 860px !important;
+  margin: 0 auto 28px !important;
+  text-align: center !important;
+  line-height: 1.9 !important;
+}
+.cta-box > div[style*="display:flex"]{
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 22px !important;
+  flex-wrap: wrap !important;
+}
+.cta-box > div[style*="display:flex"] .btn{
+  min-width: 280px !important;
+}
+@media (max-width: 960px){
+  .cta-box{
+    padding: 56px 28px !important;
+  }
+}
+@media (max-width: 640px){
+  .cta-box{
+    padding: 40px 18px !important;
+  }
+  .cta-box .section-title{
+    font-size: 24px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 14px !important;
+  }
+  .cta-box p{
+    font-size: 14px !important;
+    margin-bottom: 20px !important;
+  }
+  .cta-box > div[style*="display:flex"]{
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .cta-box > div[style*="display:flex"] .btn{
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+}
+
+
+.brand img,
+.brand-mark {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+@media (max-width: 640px){
+  .brand img,
+  .brand-mark {
+    width: 110px;
+  }
+}
+
+
+.brand{
+  gap: 0 !important;
+}
+
+
+.header-inner{
+  min-height: 108px !important;
+}
+@media (max-width: 640px){
+  .header-inner{
+    min-height: 82px !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  
+<header class="header">
+  <div class="container header-inner">
+    <div class="header-left">
+      <a class="brand" href="#top">
+        <img src="images/ICEBLIZZERD/ICEBLIZZARD.svg" alt="ICE BLIZZARD PONCHO ロゴ">
+        
+      </a>
+      <a class="company-brand" href="https://n-lyric.com/index.html" target="_blank" rel="noopener noreferrer" aria-label="Lyric Co., Ltd.">
+        <img src="images/ICEBLIZZERD/logo.svg" alt="株式会社リリック ロゴ">
+      </a>
+    </div>
+
+    <nav class="nav nav-desktop">
+      <a href="#features">特徴</a>
+      <a href="#howto">使い方</a>
+      <a href="#scenes">活用シーン</a>
+      <a href="#sizes">サイズ</a>
+      <a href="#lineup">ラインナップ</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu-nav">
+      <a href="#features">特徴</a>
+      <a href="#howto">使い方</a>
+      <a href="#scenes">活用シーン</a>
+      <a href="#sizes">サイズ</a>
+      <a href="#lineup">ラインナップ</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://soko.rms.rakuten.co.jp/lyrictoyshop/ice_blizzard_k/" target="_blank" rel="noopener noreferrer">KIDSを購入する</a>
+      <a href="https://soko.rms.rakuten.co.jp/lyrictoyshop/ice_blizzard_f/" target="_blank" rel="noopener noreferrer">FREEを購入する</a>
+    </nav>
+  </div>
+</header>
+
+
+  <main id="top">
+
+<section class="hero hero-layout-ref">
+  <div class="hero-sky-area">
+    <div class="container hero-shell">
+      <div class="hero-badge hero-badge-top">SUMMER COOL ITEM</div>
+
+      <div class="hero-main-row">
+        <div class="hero-title-panel reveal-left inview">
+          <img class="hero-titleimg" src="images/ICEBLIZZERD/ICE BLIZZERD-02.png" alt="濡らして振るだけ！瞬間COOL体験">
+        </div>
+
+        <div class="hero-model-panel reveal-right inview">
+          <img class="hero-modelimg" src="images/ICEBLIZZERD/ICE BLIZZERD-03.png" alt="親子で使えるICE BLIZZARD PONCHO">
+        </div>
+      </div>
+
+      <div class="hero-desc-panel reveal-up inview">
+        <p class="hero-text">
+          水で濡らして、しっかり絞って、振るだけ。夏の強い日差しの下でも、さっと羽織れて心地よく使える冷感ポンチョです。やさしいカラーと親子で選べるサイズ展開で、毎日のお出かけからレジャーまで、幅広いシーンで活躍します。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom-area">
+    <div class="container">
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#lineup">ラインナップを見る</a>
+        <a class="btn btn-secondary" href="#faq">よくある質問</a>
+      </div>
+
+      <div class="hero-points">
+        <div class="hero-point reveal-up"><strong>UV 97%以上</strong><span>日差し対策に</span></div>
+        <div class="hero-point reveal-up"><strong>2サイズ展開</strong><span>KIDS / FREE</span></div>
+        <div class="hero-point reveal-up"><strong>ポーチ付き</strong><span>濡れたまま収納OK</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2 class="section-title">暑い季節を、もっと快適に</h2>
+        <p class="section-lead">夏のお出かけでうれしいポイント。</p>
+        <div class="feature-grid">
+          <div class="feature card reveal-up">
+            <div class="feature-icon">UV</div>
+            <h3>紫外線対策</h3>
+            <p>UV97%以上カット。日差しの強い日のおでかけにうれしい機能です。</p>
+          </div>
+          <div class="feature card reveal-up">
+            <div class="feature-icon">COOL</div>
+            <h3>冷感体験</h3>
+            <p>濡らして振るだけのシンプルな使い方で、ひんやり気持ちよく使えます。</p>
+          </div>
+          <div class="feature card reveal-up">
+            <div class="feature-icon">HOOD</div>
+            <h3>フード付き</h3>
+            <p>頭まわりまでカバーしやすい形で、日差しが気になるシーンにも便利です。</p>
+          </div>
+          <div class="feature card reveal-up">
+            <div class="feature-icon">ZIP</div>
+            <h3>持ち運びやすい</h3>
+            <p>濡れたままでも収納しやすいポーチ付きで、レジャーにもぴったりです。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+<section class="section reveal-section" id="howto" style="background:linear-gradient(180deg, #eff8ff 0%, #ffffff 100%);">
+  <div class="container">
+    <h2 class="section-title" style="text-align:left;">使い方はかんたん3STEP</h2>
+    <p class="section-lead" style="text-align:left; margin-left:0;">毎日のお出かけやレジャーに取り入れやすい、シンプルで使いやすい冷感ポンチョです。</p>
+
+    <div class="howto-horizontal">
+      <div class="howto-card step-card step-delay-1 reveal-up">
+        <div class="howto-image">
+          <img src="images/ICEBLIZZERD/howtouse1.png" alt="1 濡らす">
+        </div>
+        <div class="howto-content">
+          <h3>水で濡らす</h3>
+          <p>ポンチョ全体にしっかり水を含ませます。</p>
+        </div>
+      </div>
+
+      <div class="howto-card step-card step-delay-2 reveal-up">
+        <div class="howto-image">
+          <img src="images/ICEBLIZZERD/howtouse2.png" alt="2 絞る">
+        </div>
+        <div class="howto-content">
+          <h3>しっかり絞る</h3>
+          <p>水滴が落ちないようにしっかり絞ります。</p>
+        </div>
+      </div>
+
+      <div class="howto-card step-card step-delay-3 reveal-up">
+        <div class="howto-image">
+          <img src="images/ICEBLIZZERD/howtouse3.png" alt="3 振る">
+        </div>
+        <div class="howto-content">
+          <h3>振って羽織る</h3>
+          <p>数回振ってから羽織れば、ひんやりとした使い心地が楽しめます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section class="section" id="scenes">
+      <div class="container">
+        <h2 class="section-title">さまざまなシーンで活躍</h2>
+        <p class="section-lead">屋外イベントから水辺のレジャーまで、さまざまなシーンで活躍します。</p>
+        <div class="image-panel card">
+          <img src="images/ICEBLIZZERD/ICE BLIZZERD-07.png" alt="スポーツ観戦、海水浴やプール、熱中症予防に">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sizes" style="background:linear-gradient(180deg, #ffffff 0%, #eef8ff 100%);">
+      <div class="container">
+        <h2 class="section-title">サイズは2種類</h2>
+        <p class="section-lead">親子で選びやすいように、KIDSサイズとFREEサイズをご用意しています。</p>
+        <div class="size-grid">
+          <div class="size-card card reveal-up">
+            <h3>KIDS サイズ</h3>
+            <img src="images/ICEBLIZZERD/ICE BLIZZERD-09.png" alt="KIDSサイズ 約100cm × 約50cm">
+            <p class="size-note">お子さま向けサイズ。動きやすく、使いやすい大きさです。</p>
+          </div>
+          <div class="size-card card reveal-up">
+            <h3>FREE サイズ</h3>
+            <img src="images/ICEBLIZZERD/ICE BLIZZERD-08.png" alt="FREEサイズ 約145cm × 約65cm">
+            <p class="size-note">大人向けのフリーサイズ。ゆったり羽織りやすいサイズ感です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+<section class="section" id="lineup">
+      <div class="container">
+        <h2 class="section-title">ラインナップ</h2>
+        <p class="section-lead">カラーラインナップと着用イメージ。</p>
+        <div class="lineup-grid">
+          <div class="lineup-card card reveal-up">
+            <h3>KIDS</h3>
+                        <img src="images/ICEBLIZZERD/ECKIDSW.jpg" alt="KIDSラインナップ">
+            <div class="lineup-actions" style="margin-top:16px; text-align:center;">
+              <a class="btn btn-primary" href="https://soko.rms.rakuten.co.jp/lyrictoyshop/ice_blizzard_k/" target="_blank" rel="noopener noreferrer">KIDSを購入する</a>
+            </div>
+            <div class="slider-wrap">
+              <div class="slider" data-slider="kids">
+                <div class="slides">
+                  <div class="slide"><img src="images/ICEBLIZZERD/forkids1.jpg" alt="KIDS ソフトクリーム 着用イメージ"></div>
+                  <div class="slide"><img src="images/ICEBLIZZERD/forkids2.jpg" alt="KIDS キャンディ 着用イメージ"></div>
+                  <div class="slide"><img src="images/ICEBLIZZERD/forkids3.jpg" alt="KIDS ビークル 着用イメージ"></div>
+                  <div class="slide"><img src="images/ICEBLIZZERD/forkids4.jpg" alt="KIDS シャーク 着用イメージ"></div>
+                </div>
+                <div class="slider-controls">
+                  <div class="slider-buttons">
+                    <button class="slider-btn prev" type="button" aria-label="前へ">‹</button>
+                    <button class="slider-btn next" type="button" aria-label="次へ">›</button>
+                  </div>
+                  <div class="slider-dots"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lineup-card card reveal-up">
+            <h3>FREE</h3>
+            <img src="images/ICEBLIZZERD/ECECFREEW.jpg" alt="FREEラインナップ">
+            <div class="lineup-actions" style="margin-top:16px; text-align:center;">
+              <a class="btn btn-primary" href="https://soko.rms.rakuten.co.jp/lyrictoyshop/ice_blizzard_f/" target="_blank" rel="noopener noreferrer">FREEを購入する</a>
+            </div>
+            <div class="slider-wrap">
+              <div class="slider" data-slider="free">
+                <div class="slides">
+                  <div class="slide"><img src="images/ICEBLIZZERD/adult1.jpg" alt="FREE ネイビーブルー 着用イメージ"></div>
+                  <div class="slide"><img src="images/ICEBLIZZERD/adult2.jpg" alt="FREE フォレストグラデーション 着用イメージ"></div>
+                  <div class="slide"><img src="images/ICEBLIZZERD/adult3.jpg" alt="FREE クリスタルブルー 着用イメージ"></div>
+                  <div class="slide"><img src="images/ICEBLIZZERD/adult4.jpg" alt="FREE エメラルドラグーン 着用イメージ"></div>
+                </div>
+                <div class="slider-controls">
+                  <div class="slider-buttons">
+                    <button class="slider-btn prev" type="button" aria-label="前へ">‹</button>
+                    <button class="slider-btn next" type="button" aria-label="次へ">›</button>
+                  </div>
+                  <div class="slider-dots"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">持ち運びにうれしいポーチ付き</h2>
+        <p class="section-lead">濡れたままでも収納しやすく、バッグなどに付けて持ち運びやすい仕様です。</p>
+        <div class="package-grid">
+          <div class="package-card card reveal-up">
+            <img src="images/ICEBLIZZERD/PKGKIDS.jpg" alt="KIDSサイズの収納ポーチ">
+          </div>
+          <div class="package-card card reveal-up">
+            <img src="images/ICEBLIZZERD/PKGFREE.jpg" alt="FREEサイズの収納ポーチ">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" style="background:linear-gradient(180deg, #eff8ff 0%, #ffffff 100%);">
+      <div class="container">
+        <h2 class="section-title">よくある質問</h2>
+        <p class="section-lead">ご購入前によくあるご質問をまとめました。</p>
+        <div class="faq-grid">
+          <div class="faq-item card reveal-up">
+            <p class="faq-q">Q. どうやって使いますか？</p>
+            <p class="faq-a">A. 水で濡らして、しっかり絞って、数回振ってから羽織ってください。</p>
+          </div>
+          <div class="faq-item card reveal-up">
+            <p class="faq-q">Q. どんなシーンで使えますか？</p>
+            <p class="faq-a">A. スポーツ観戦、海水浴やプール、公園遊び、屋外イベントなどにおすすめです。</p>
+          </div>
+          <div class="faq-item card reveal-up">
+            <p class="faq-q">Q. 子どもでも使えますか？</p>
+            <p class="faq-a">A. KIDSサイズをご用意しています。お子さまが使いやすいサイズ感です。</p>
+          </div>
+          <div class="faq-item card reveal-up">
+            <p class="faq-q">Q. 持ち運びしやすいですか？</p>
+            <p class="faq-a">A. 収納ポーチ付きなので、使ったあともまとめやすく、持ち運びにも便利です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <div class="container">
+        <div class="cta-box card">
+          <h2 class="section-title" style="margin-bottom:12px;">夏のお出かけを、もっと快適に。</h2>
+          <p>ICE BLIZZARD PONCHO</p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://soko.rms.rakuten.co.jp/lyrictoyshop/ice_blizzard_k/" target="_blank" rel="noopener noreferrer">KIDSを購入する</a>
+          <a class="btn btn-primary" href="https://soko.rms.rakuten.co.jp/lyrictoyshop/ice_blizzard_f/" target="_blank" rel="noopener noreferrer">FREEを購入する</a>
+          <a class="btn btn-secondary" href="#top">ページ上部へ戻る</a>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+<footer id="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="images/ICEBLIZZERD/logo.svg" alt="株式会社リリック ロゴ">
+    <div class="footer-copy">(c)Lyric Co., Ltd.</div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.slider').forEach((slider) => {
+  const slides = slider.querySelector('.slides');
+  const slideCount = slides.children.length;
+  const dotsWrap = slider.querySelector('.slider-dots');
+  const prev = slider.querySelector('.prev');
+  const next = slider.querySelector('.next');
+  let index = 0;
+  let timer = null;
+
+  const render = () => {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    [...dotsWrap.children].forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  };
+
+  const goTo = (i) => {
+    index = (i + slideCount) % slideCount;
+    render();
+  };
+
+  const startAuto = () => {
+    stopAuto();
+    timer = setInterval(() => {
+      goTo(index + 1);
+    }, 3000);
+  };
+
+  const stopAuto = () => {
+    if (timer) clearInterval(timer);
+  };
+
+  for (let i = 0; i < slideCount; i++) {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `${i + 1}枚目へ`);
+    dot.addEventListener('click', () => {
+      goTo(i);
+      startAuto();
+    });
+    dotsWrap.appendChild(dot);
+  }
+
+  prev.addEventListener('click', () => {
+    goTo(index - 1);
+    startAuto();
+  });
+
+  next.addEventListener('click', () => {
+    goTo(index + 1);
+    startAuto();
+  });
+
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+  slider.addEventListener('touchstart', stopAuto, { passive: true });
+  slider.addEventListener('touchend', startAuto);
+
+  render();
+  startAuto();
+});
+</script>
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      menuToggle.classList.toggle('is-active', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        menuToggle.classList.remove('is-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const targets = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('inview');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.16,
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  targets.forEach((el) => {
+    if (!el.classList.contains('inview')) {
+      io.observe(el);
+    }
+  });
+});
+</script>
+</body>
+</html>

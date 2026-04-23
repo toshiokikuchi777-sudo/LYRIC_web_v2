@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   thanks_all.css — お問い合わせ完了ページ (thanks.html) 専用 統合CSS
+   --------------------------------------------------------------------------
+   構成:
+     1. Reset (destyle.css v4.0.0 / MIT)
+     2. Base (body 背景グラデーション + フォント)
+   --------------------------------------------------------------------------
+   カード本体のスタイルは HTML 側の <style> で完結（読み込み最適化のため）。
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. RESET  —  destyle.css v4.0.0 | MIT License | github.com/nicolas-cusan/destyle.css
+   ========================================================================== */
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body { margin: 0; }
+main { display: block; }
+
+p, table, blockquote, address, pre, iframe, form, figure, dl { margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+b, strong { font-weight: bolder; }
+small { font-size: 80%; }
+
+svg, img, embed, object, iframe { vertical-align: bottom; }
+
+button, input, optgroup, select, textarea {
+  vertical-align: middle;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+
+/* ==========================================================================
+   2. TOKENS (統一スケール — index_all.css と共通)
+   ========================================================================== */
+:root {
+  --color-text-base:   #333;
+  --color-text-soft:   #555;
+  --color-text-muted:  #888;
+  --color-text-invert: #fff;
+  --lh-loose: 1.8;
+}
+
+/* ==========================================================================
+   3. BASE  —  背景グラデーション + タイポ
+   ========================================================================== */
+
+html {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: transparent;
+  font-family: "Noto Sans JP", "M PLUS Rounded 1c", "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-base);
+  line-height: var(--lh-loose);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(180deg, #ffecfa 0%, #d4efff 100%);
+  z-index: -2;
+}
