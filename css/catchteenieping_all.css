@@ -265,7 +265,7 @@ header {
    6. CTP Main Section
    ========================================================================== */
 .bg_ctp {
-  background-image: url("../images/ctp/ctp-bg.png");
+  background-image: url("../images/ctp/ctp-bg.png"); background-image: image-set(url("../images/ctp/ctp-bg.webp") type("image/webp"), url("../images/ctp/ctp-bg.png") type("image/png"));
   background-size: contain;
   background-repeat: repeat;
   padding-top: 35px;
