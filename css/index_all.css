@@ -193,7 +193,7 @@ th {
   --color-brand-dot:     #ffc9dd;
 
   /* Extended */
-  --color-ink:    #2B1B3A;
+  --color-ink:    #5D3416;
   --color-paper:  #FFF7F0;
   --color-mint:   #B8E6D9;
   --color-sun:    #FFD66B;
@@ -217,7 +217,7 @@ th {
   --color-text-soft:   #555;
   --color-text-muted:  #888;
   --color-text-faint:  #999;
-  --color-text-warm:   #ae8046;
+  --color-text-warm:   #5d3416;
   --color-text-dark:   #5d3416;
   --color-text-invert: #fff;
   --color-text-black:  #000;
@@ -259,9 +259,9 @@ th {
   --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* Fonts */
-  --font-body:    "Noto Sans JP", "M PLUS Rounded 1c", "M PLUS 1p", "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "Meiryo", system-ui, sans-serif;
-  --font-heading: "M PLUS Rounded 1c", "Noto Sans JP", "M PLUS 1p", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  /* Fonts — TOPページは M PLUS Rounded 1c に統一 */
+  --font-body:    "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", sans-serif;
 
   /* ==========================================================================
      Typography Scale (統一スケール — すべてここに集約)
@@ -318,12 +318,6 @@ html {
   font-size: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-@font-face {
-  font-family: "M PLUS 1p";
-  src: url("../fonts/MPLUS1p-Medium_subset.woff") format("woff");
-  font-display: swap;
 }
 
 body {
@@ -863,10 +857,10 @@ header {
   align-items: center;
   padding: 14px 22px;
   background: #fff;
-  border: 1px solid rgba(43, 27, 58, 0.08);
+  border: 1px solid rgba(93, 52, 22, 0.08);
   border-radius: 16px;
   min-width: 110px;
-  box-shadow: 0 6px 18px rgba(43, 27, 58, 0.06);
+  box-shadow: 0 6px 18px rgba(93, 52, 22, 0.06);
 }
 
 .hero-badge-num {
@@ -911,7 +905,7 @@ header {
   padding: 0 16px;
   border-radius: var(--radius-pill);
   background: #fff;
-  border: 1px solid rgba(43, 27, 58, 0.1);
+  border: 1px solid rgba(93, 52, 22, 0.1);
   font-size: var(--fs-xs);
   letter-spacing: var(--ls-wide);
   font-weight: var(--fw-bold);
@@ -952,7 +946,7 @@ header {
   font-weight: var(--fw-bold);
   padding: 6px 10px;
   border-radius: 8px;
-  background: rgba(43, 27, 58, 0.35);
+  background: rgba(93, 52, 22, 0.35);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: color 200ms var(--ease-out), transform 200ms var(--ease-out), background 200ms var(--ease-out);
@@ -960,7 +954,7 @@ header {
 
 .hero-scroll-cue:hover {
   color: var(--color-text-invert);
-  background: rgba(43, 27, 58, 0.55);
+  background: rgba(93, 52, 22, 0.55);
   transform: translate(-50%, 2px);
 }
 
@@ -1184,50 +1178,69 @@ header {
   cursor: pointer;
   transition: transform 0.3s ease;
   text-align: center;
+  /* ラベルと円が一体に見えるよう負マージンで重ねる */
+  gap: 0;
 }
 
 .video-btn-label {
-  display: block;
-  font-size: var(--fs-xs);
+  display: inline-block;
+  font-size: 11px;
   font-weight: var(--fw-bold);
   color: var(--accent-pink);
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
   border-radius: 999px;
-  padding: 2px 8px;
-  margin-bottom: 4px;
+  padding: 4px 12px;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(255, 82, 136, 0.2);
-  letter-spacing: var(--ls-normal);
+  box-shadow: 0 3px 10px rgba(255, 82, 136, 0.25);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  /* 円に少し重ねて"吹き出し感"を出す */
+  position: relative;
+  z-index: 2;
+  margin-bottom: -10px;
+  border: 1.5px solid var(--accent-pink);
 }
 
-.floating-video-btn:hover { transform: scale(1.1); }
+.floating-video-btn:hover { transform: scale(1.08); }
+.floating-video-btn:focus-visible { outline: 3px solid var(--accent-pink); outline-offset: 4px; border-radius: 50%; }
 
 .video-btn-inner {
   background: var(--accent-pink);
-  color: var(--color-text-invert);
-  width: 100px;
-  height: 100px;
+  color: #fff;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  gap: 2px;
+  box-shadow: 0 6px 18px rgba(255, 82, 136, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
   border: 3px solid #fff;
   text-align: center;
-  font-size: var(--fs-xs);
+  font-size: 12px;
   font-weight: var(--fw-bold);
-  animation: bounceBtn 2s infinite;
+  letter-spacing: 0.04em;
+  animation: bounceBtn 2.4s ease-in-out infinite;
+  padding-top: 12px; /* ラベルぶんの視覚余白 */
 }
 
 .video-btn-inner .play-icon {
-  font-size: var(--fs-xl);
-  margin-top: 5px;
+  font-size: 22px;
+  line-height: 1;
+  margin-left: 3px; /* ▶を視覚中央に */
+}
+
+.video-btn-caption {
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.95;
 }
 
 @keyframes bounceBtn {
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
+  50%      { transform: translateY(-8px); }
 }
 
 @media (max-width: 480px) {
@@ -1235,17 +1248,22 @@ header {
     bottom: 12px;
     left: 12px;
   }
-  .video-btn-inner {
-    width: 72px;
-    height: 72px;
-    font-size: var(--fs-2xs);
-  }
-  .video-btn-inner .play-icon {
-    font-size: var(--fs-lg);
-  }
   .video-btn-label {
     font-size: 10px;
-    padding: 2px 6px;
+    padding: 3px 10px;
+    margin-bottom: -8px;
+  }
+  .video-btn-inner {
+    width: 84px;
+    height: 84px;
+    padding-top: 10px;
+    font-size: 10px;
+  }
+  .video-btn-inner .play-icon {
+    font-size: 18px;
+  }
+  .video-btn-caption {
+    font-size: 10px;
   }
 }
 

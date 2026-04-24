@@ -185,7 +185,7 @@ th {
   --color-brand-dot:     #ffc9dd;
 
   /* Extended */
-  --color-ink:    #2B1B3A;
+  --color-ink:    #5D3416;
   --color-paper:  #FFF7F0;
   --color-mint:   #B8E6D9;
   --color-sun:    #FFD66B;
@@ -199,7 +199,7 @@ th {
   --color-text-soft:   #555;
   --color-text-muted:  #888;
   --color-text-faint:  #999;
-  --color-text-warm:   #ae8046;
+  --color-text-warm:   #5d3416;
   --color-text-dark:   #5d3416;
   --color-text-invert: #fff;
   --color-text-black:  #000;
@@ -230,9 +230,9 @@ th {
   --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* Fonts */
-  --font-body:    "Noto Sans JP", "M PLUS Rounded 1c", "M PLUS 1p", "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "Meiryo", system-ui, sans-serif;
-  --font-heading: "M PLUS Rounded 1c", "Noto Sans JP", "M PLUS 1p", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  /* Fonts — TOPと統一（M PLUS Rounded 1c） */
+  --font-body:    "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", sans-serif;
 
   /* Typography Scale (統一スケール — index_all.css と共通) */
   --fs-2xs: clamp(10px, 0.85vw, 12px);
@@ -270,12 +270,6 @@ html {
   font-size: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-@font-face {
-  font-family: "M PLUS 1p";
-  src: url("../fonts/MPLUS1p-Medium_subset.woff") format("woff");
-  font-display: swap;
 }
 
 body {

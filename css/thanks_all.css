@@ -88,7 +88,7 @@ html {
 
 body {
   background: transparent;
-  font-family: "Noto Sans JP", "M PLUS Rounded 1c", "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  font-family: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", "Meiryo", system-ui, sans-serif;
   font-feature-settings: "palt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

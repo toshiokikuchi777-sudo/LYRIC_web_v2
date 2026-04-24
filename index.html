@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Google Fonts: Noto Sans JP / M PLUS Rounded 1c -->
+  <!-- Google Fonts: M PLUS Rounded 1c（本文・見出し統一） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
   <title>株式会社 リリック | 玩具・おもちゃ・キャラクターグッズ企画製造販売</title>
   <meta name="Keywords" content="水鉄砲,サマーグッズ,クリスマス,玩具,おもちゃ,キャラクターグッズ">
   <meta name="Description" content="水鉄砲、バブルガン、サマーグッズ、クリスマス商品等のキャラクター商品の企画製造販売会社です。">
@@ -75,8 +75,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
   <!-- ローカルCSS（common.css = 全ページ共有 / index_all.css = ページ固有 / modaalはvendor） -->
-  <link href="css/common.css?v=20260424" rel="stylesheet" type="text/css" media="screen">
-  <link href="css/index_all.css?v=20260424" rel="stylesheet" type="text/css" media="screen">
+  <link href="css/common.css?v=20260424b" rel="stylesheet" type="text/css" media="screen">
+  <link href="css/index_all.css?v=20260424b" rel="stylesheet" type="text/css" media="screen">
   <link href="css/modaal.min.css" rel="stylesheet" />
 
 
@@ -384,11 +384,11 @@
       style="opacity:0; position:absolute; z-index:-1; top:0; left:0; width:1px; height:1px;"></a>
 
     <!-- 右下フローティング動画ボタン -->
-    <div class="floating-video-btn" id="floatingVideoBtn">
-      <span class="video-btn-label">おすすめ</span>
+    <div class="floating-video-btn" id="floatingVideoBtn" role="button" tabindex="0" aria-label="おすすめ商品動画をみる">
+      <span class="video-btn-label">おすすめ商品動画</span>
       <div class="video-btn-inner">
-        <span>商品動画<br>をみる</span>
-        <div class="play-icon">▶</div>
+        <div class="play-icon" aria-hidden="true">▶</div>
+        <span class="video-btn-caption">をみる</span>
       </div>
     </div>
 
