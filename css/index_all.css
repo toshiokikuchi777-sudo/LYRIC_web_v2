@@ -1536,13 +1536,17 @@ header {
   text-align: center;
   align-items: center;
   justify-content: center;
+  gap: 40px;
   margin-top: 8vh;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .philosophy_text {
   line-height: 1;
   text-align: left;
   max-width: 400px;
+  width: 100%;
 }
 
 .philosophy_text p {
@@ -1556,15 +1560,39 @@ header {
 
 /* .philosophy_heading: 共通見出しスタイルを継承 (上部グループセレクタ参照) */
 
-.philosophy_img { width: clamp(320px, 35vw, 450px); }
-.philosophy_img img { max-width: 100%; }
+.philosophy_img { width: clamp(320px, 35vw, 450px); max-width: 100%; }
+.philosophy_img img { max-width: 100%; height: auto; }
 
 @media all and (max-width: 800px) {
-  .philosophy_box { flex-direction: column; }
+  .philosophy_box {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 20px;
+  }
+  .philosophy_text {
+    max-width: 100%;
+    text-align: center;
+  }
+  .philosophy_text p {
+    text-align: left;
+    font-size: var(--fs-md);
+  }
   .philosophy_heading { text-align: center; }
   .philosophy_heading::after {
     left: 50%;
     transform: translateX(-50%);
+  }
+  .philosophy_img { width: min(360px, 88vw); }
+}
+
+@media (max-width: 480px) {
+  .philosophy_box {
+    padding: 0 16px;
+    margin-top: 40px;
+  }
+  .philosophy_text p {
+    font-size: var(--fs-md);
+    line-height: 1.9;
   }
 }
 
