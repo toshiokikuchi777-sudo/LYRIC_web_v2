@@ -182,7 +182,7 @@ th {
   --color-brand-dot:     #ffc9dd;
 
   /* Extended */
-  --color-ink:    #2B1B3A;
+  --color-ink:    #5D3416;
   --color-paper:  #FFF7F0;
   --color-mint:   #B8E6D9;
   --color-sun:    #FFD66B;
@@ -196,7 +196,7 @@ th {
   --color-text-soft:   #555;
   --color-text-muted:  #888;
   --color-text-faint:  #999;
-  --color-text-warm:   #ae8046;
+  --color-text-warm:   #5d3416;
   --color-text-dark:   #5d3416;
   --color-text-invert: #fff;
   --color-text-black:  #000;
@@ -227,9 +227,9 @@ th {
   --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* Fonts */
-  --font-body:    "Noto Sans JP", "M PLUS Rounded 1c", "M PLUS 1p", "Hiragino Sans", "ヒラギノ角ゴシック", "Yu Gothic", "Meiryo", system-ui, sans-serif;
-  --font-heading: "M PLUS Rounded 1c", "Noto Sans JP", "M PLUS 1p", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  /* Fonts — TOPと統一（M PLUS Rounded 1c） */
+  --font-body:    "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ Pro", "Yu Gothic", sans-serif;
 
   /* Typography Scale (統一スケール — index_all.css と共通) */
   --fs-2xs: clamp(10px, 0.85vw, 12px);
@@ -267,12 +267,6 @@ html {
   font-size: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-}
-
-@font-face {
-  font-family: "M PLUS 1p";
-  src: url("../fonts/MPLUS1p-Medium_subset.woff") format("woff");
-  font-display: swap;
 }
 
 body {
@@ -748,15 +742,15 @@ footer small {
    ========================================================================== */
 
 :root {
-  --co-ink:           var(--color-ink, #2B1B3A);
+  --co-ink:           var(--color-ink, #5D3416);
   --co-paper:         var(--color-paper, #FFF7F0);
   --co-mint:          var(--color-mint, #B8E6D9);
   --co-accent:        #ff5288;
   --co-accent-deep:   #e04a7a;
   --co-orange:        #eb6100;
   --co-panel-bg:      #ffffff;
-  --co-panel-border:  rgba(43, 27, 58, 0.08);
-  --co-panel-shadow:  0 10px 40px rgba(43, 27, 58, 0.06);
+  --co-panel-border:  rgba(93, 52, 22, 0.08);
+  --co-panel-shadow:  0 10px 40px rgba(93, 52, 22, 0.06);
   --co-th-bg:         linear-gradient(180deg, #fff2e8 0%, #ffe6d4 100%);
   --co-th-text:       #6b3a12;
   --co-td-text:       #3c2b4d;
@@ -831,7 +825,7 @@ h1.company_heading {
 .Form td {
   padding: 16px 22px;
   vertical-align: top;
-  border-bottom: 1px solid rgba(43, 27, 58, 0.06);
+  border-bottom: 1px solid rgba(93, 52, 22, 0.06);
   font-size: var(--fs-md);
 }
 
@@ -899,7 +893,7 @@ h1.company_heading {
 .Form textarea {
   width: 100%;
   padding: 11px 14px;
-  border: 1.5px solid rgba(43, 27, 58, 0.15);
+  border: 1.5px solid rgba(93, 52, 22, 0.15);
   border-radius: 10px;
   box-sizing: border-box;
   font-size: var(--fs-md);
@@ -1088,7 +1082,7 @@ body > div[style*="height:50px"] {
   .Form td {
     padding-top: 4px;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(43, 27, 58, 0.06);
+    border-bottom: 1px solid rgba(93, 52, 22, 0.06);
     color: var(--co-ink);
   }
 
@@ -1097,7 +1091,7 @@ body > div[style*="height:50px"] {
   .Form td:only-child {
     text-align: center;
     background: var(--co-td-bg-alt);
-    border-bottom: 1px solid rgba(43, 27, 58, 0.04);
+    border-bottom: 1px solid rgba(93, 52, 22, 0.04);
   }
 
   /* iOS Safari のオートズーム防止（16px 未満でズームしてしまう） */

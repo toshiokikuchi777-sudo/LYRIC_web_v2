@@ -248,12 +248,24 @@ header {
   transition: transform .2s var(--ease-standard);
 }
 .sp_sns a:hover { transform: translateY(-2px); }
+.sp_sns a .sns-glyph {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: #fff;
+}
+/* 旧img要素が残っていても白アイコン相当に */
+.sp_sns a img {
+  width: 22px !important;
+  height: 22px !important;
+  filter: brightness(0) invert(1);
+}
 
 /* ==========================================================================
    6. CTP Main Section
    ========================================================================== */
 .bg_ctp {
-  background-image: url("../images/ctp/ctp-bg.png");
+  background-image: url("../images/ctp/ctp-bg.png"); background-image: image-set(url("../images/ctp/ctp-bg.webp") type("image/webp"), url("../images/ctp/ctp-bg.png") type("image/png"));
   background-size: contain;
   background-repeat: repeat;
   padding-top: 35px;
