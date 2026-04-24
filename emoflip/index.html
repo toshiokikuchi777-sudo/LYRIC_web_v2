@@ -68,11 +68,28 @@
   </nav>
 </header>
 
+<!-- マーキー（流れるテキストリボン） -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>♡ HEISEI EMO REVIVAL ♡ emo flip HS-07 ♡ COMING 2026.10 ♡ TOY CAMERA ♡ パカパカ復活 ♡ 感情を撮る玩具 ♡ </span>
+    <span>♡ HEISEI EMO REVIVAL ♡ emo flip HS-07 ♡ COMING 2026.10 ♡ TOY CAMERA ♡ パカパカ復活 ♡ 感情を撮る玩具 ♡ </span>
+    <span>♡ HEISEI EMO REVIVAL ♡ emo flip HS-07 ♡ COMING 2026.10 ♡ TOY CAMERA ♡ パカパカ復活 ♡ 感情を撮る玩具 ♡ </span>
+  </div>
+</div>
+
 <main id="main">
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-bg-blob" aria-hidden="true"></div>
     <div class="hero-inner">
+      <span class="hero-burst" aria-hidden="true">
+        <span class="hero-burst-inner">
+          <span class="hero-burst-line1">2026</span>
+          <span class="hero-burst-line2">AUTUMN</span>
+          <span class="hero-burst-line3">NEW</span>
+        </span>
+      </span>
       <p class="hero-eyebrow">Toy Camera / Heisei Emo</p>
       <h1 class="hero-title">
         <img src="assets/logo.png" alt="emo flip HS-07" class="hero-logo" />
@@ -90,6 +107,7 @@
       </div>
     </div>
     <div class="hero-visual">
+      <div class="hero-halo" aria-hidden="true"></div>
       <img src="assets/pnk.PNG" alt="emo flip HS-07 ピンクゴールド" class="hero-product" />
       <img src="assets/deco01.PNG" alt="" class="hero-deco d1" aria-hidden="true" />
       <img src="assets/deco02.PNG" alt="" class="hero-deco d2" aria-hidden="true" />
@@ -211,17 +229,26 @@
     </h2>
     <div class="color-grid">
       <article class="color-card silver">
-        <img src="assets/silver.png" alt="emo flip HS-07 シルバー" class="color-photo" />
+        <span class="color-chip" style="background: linear-gradient(135deg,#e8e8ee,#a4a8b5);"></span>
+        <div class="color-photo-wrap">
+          <img src="assets/silver.png" alt="emo flip HS-07 シルバー" class="color-photo" />
+        </div>
         <h3>シルバー</h3>
         <p class="color-vibe">クール / 本物っぽい</p>
       </article>
       <article class="color-card white">
-        <img src="assets/white.PNG" alt="emo flip HS-07 ホワイト" class="color-photo" />
+        <span class="color-chip" style="background: linear-gradient(135deg,#ffffff,#f2ecf0);"></span>
+        <div class="color-photo-wrap">
+          <img src="assets/white.PNG" alt="emo flip HS-07 ホワイト" class="color-photo" />
+        </div>
         <h3>ホワイト</h3>
         <p class="color-vibe">清楚 / デコの主役</p>
       </article>
       <article class="color-card pinkgold">
-        <img src="assets/pnk.PNG" alt="emo flip HS-07 ピンクゴールド" class="color-photo" />
+        <span class="color-chip" style="background: linear-gradient(135deg,#ffd1e3,#e7a274);"></span>
+        <div class="color-photo-wrap">
+          <img src="assets/pnk.PNG" alt="emo flip HS-07 ピンクゴールド" class="color-photo" />
+        </div>
         <h3>ピンクゴールド</h3>
         <p class="color-vibe">ぶりっ子 / 平成ギャル</p>
       </article>
