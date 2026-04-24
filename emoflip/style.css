@@ -632,12 +632,133 @@ section { position: relative; }
   margin: 0;
 }
 
+/* ---------- Skip Link (a11y) ---------- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  background: var(--ink);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 12px;
+  outline: 2px solid #ff5288;
+  outline-offset: 2px;
+}
+
+/* ---------- Header brand link ---------- */
+.brand {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+.brand:hover { opacity: 0.7; }
+
+/* ---------- Header nav ---------- */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.nav-home:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.nav-home .nav-arrow { font-size: 14px; line-height: 1; }
+
+/* ---------- Footer brand link ---------- */
+.footer-brand {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+.footer-brand:hover { opacity: 0.75; }
+
+/* ---------- Footer nav ---------- */
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 0 0 28px;
+  flex-wrap: wrap;
+}
+.footer-nav a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+.footer-nav a:hover { color: #ff5288; }
+.footer-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: #ff5288;
+  transition: width 0.3s ease;
+}
+.footer-nav a:hover::after { width: 100%; }
+
+/* ---------- Footer back button ---------- */
+.footer-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5288, #ff8ab0);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  margin: 0 0 32px;
+  box-shadow: 0 8px 20px rgba(255, 82, 136, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.footer-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(255, 82, 136, 0.5);
+}
+
 /* ---------- Utilities ---------- */
 .sp-only { display: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .site-header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+  .site-nav { gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  .nav-home { padding: 7px 12px; font-size: 12px; }
+  .release-badge { font-size: 11px; padding: 6px 12px; }
+  .footer-nav { gap: 20px; font-size: 12px; }
+  .footer-back-btn { padding: 11px 22px; font-size: 13px; }
 
   .hero {
     grid-template-columns: 1fr;
@@ -666,6 +787,17 @@ section { position: relative; }
 @media (max-width: 480px) {
   .feature-list { grid-template-columns: 1fr; }
   .hero-title { font-size: 56px; }
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+  }
+  .brand { justify-content: center; }
+  .site-nav { justify-content: center; gap: 8px; }
+  .brand-name { font-size: 14px; }
+  .brand-logo { height: 36px; }
+  .footer-nav { gap: 16px; }
+  .site-footer { padding: 48px 20px 32px; }
 }
 
 /* ---------- Hero meta tags ---------- */
