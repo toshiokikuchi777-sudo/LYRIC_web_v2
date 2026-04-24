@@ -26,6 +26,9 @@ tmp/
 # Archive (local only, not tracked)
 _archive/
 
+# Worktree / dev folders (local only, not tracked)
+peaceful-elgamal-f6a707/
+
 # Numbers / Excel temp
 ~$*
 .~*

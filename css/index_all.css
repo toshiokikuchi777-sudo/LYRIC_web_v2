@@ -1828,6 +1828,70 @@ header {
 
 
 /* ==========================================================================
+   18.5 SPECIAL LINKS (新商品・特設ページへの導線)
+   ========================================================================== */
+
+.special-links {
+  max-width: 1000px;
+  margin: 40px auto 60px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.special-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 28px 32px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,225,240,0.7));
+  border: 1px solid rgba(255, 82, 136, 0.25);
+  box-shadow: 0 10px 30px rgba(255, 82, 136, 0.12);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.special-link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(255, 82, 136, 0.22);
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,210,228,0.85));
+}
+
+.special-link-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  color: var(--color-brand-accent);
+  text-transform: uppercase;
+}
+
+.special-link-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-heading);
+  letter-spacing: var(--ls-normal);
+}
+
+.special-link-sub {
+  font-size: var(--fs-md);
+  color: var(--color-ink);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-normal);
+}
+
+@media (max-width: 480px) {
+  .special-links { margin: 32px auto 40px; padding: 0 16px; }
+  .special-link-card { padding: 22px 20px; border-radius: 20px; }
+  .special-link-title { font-size: var(--fs-xl); }
+  .special-link-sub { font-size: var(--fs-sm); }
+}
+
+
+/* ==========================================================================
    19. FOOTER / PAGE-TOP / COPYRIGHT
    ========================================================================== */
 
