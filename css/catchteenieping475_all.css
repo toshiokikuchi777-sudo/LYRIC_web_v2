@@ -585,9 +585,11 @@ header {
 .sns {
   background: rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 2rem 1.25rem;
   max-width: 800px;
+  width: calc(100% - 32px);
   margin: 2rem auto;
+  box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
 }

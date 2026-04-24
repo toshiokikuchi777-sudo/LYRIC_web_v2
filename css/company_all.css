@@ -594,9 +594,12 @@ footer small {
 /* SNS セクション */
 .sns {
   display: flex;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   margin: 8vh auto 30px;
   flex-wrap: wrap;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .sns_title_l {
@@ -669,7 +672,8 @@ footer small {
     flex-direction: column;
     flex-wrap: nowrap;
     margin: 5vh auto 0;
-    width: fit-content;
+    width: 100%;
+    max-width: 100%;
   }
 
   .sns_title_l { order: 1; width: 100%; }
@@ -1073,12 +1077,12 @@ body > div[style*="height:50px"] {
   .Form th {
     background: transparent;
     color: var(--co-accent-deep);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
     font-weight: var(--fw-bold);
     letter-spacing: var(--ls-wide);
     text-transform: none;
     padding-top: 18px;
-    padding-bottom: 2px;
+    padding-bottom: 6px;
   }
 
   .Form td {
@@ -1096,6 +1100,35 @@ body > div[style*="height:50px"] {
     border-bottom: 1px solid rgba(43, 27, 58, 0.04);
   }
 
+  /* iOS Safari のオートズーム防止（16px 未満でズームしてしまう） */
+  .Form input[type="text"],
+  .Form input[type="email"],
+  .Form input[type="tel"],
+  .Form select,
+  .Form textarea {
+    font-size: 16px;
+    padding: 13px 14px;
+    min-height: 48px;
+  }
+
+  .Form textarea {
+    min-height: 140px;
+  }
+
+  .Form input[type="radio"],
+  .Form input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+  }
+
+  .Form td label {
+    display: inline-flex;
+    align-items: center;
+    margin: 4px 8px 4px 0;
+    padding: 4px 0;
+    min-height: 32px;
+  }
+
   .company_heading {
     font-size: var(--fs-lg);
     margin-bottom: 20px;
@@ -1104,7 +1137,8 @@ body > div[style*="height:50px"] {
   button[type="submit"] {
     min-width: 0;
     width: 100%;
-    padding: 14px 20px;
+    padding: 16px 20px;
     font-size: var(--fs-lg);
+    min-height: 52px;
   }
 }
